@@ -1,43 +1,43 @@
 [
-    {
-      "id": 1,
-      "label": "Cistos de Desenvolvimento"      
-    },
-    {
-      "id": 2,
-      "label": "Patologia das Glândulas salivares"
-    },
-    {
-      "id": 3,
-      "label": "Patologia da Polpa"
-    },
-    {
-      "id": 4,
-      "label": "Patologia do periápice"
-    },
-    {
-      "id": 5,
-      "label": "Processos proliferativos não neoplásicos"
-    },
-    {
-      "id": 6,
-      "label": "Cistos odontogênicos"
-    },
-    {
-      "id": 7,
-      "label": "Tumores odontogênicos"
-    },
-    {
-      "id": 8,
-      "label": "Patologia Óssea"
-    },
-    {
-      "id": 9,
-      "label": "Neoplasias benignas"
-    },
-    {
-      "id": 10,
-      "label": "Doenças dermatológicas"
-    }
-  ]
+  {
+    "id": 1,
+    "label": "Cistos de Desenvolvimento"      
+  },
+  {
+    "id": 2,
+    "label": "Patologia das Glândulas salivares"
+  },
+  {
+    "id": 3,
+    "label": "Patologia da Polpa"
+  },
+  {
+    "id": 4,
+    "label": "Patologia do periápice"
+  },
+  {
+    "id": 5,
+    "label": "Processos proliferativos não neoplásicos"
+  },
+  {
+    "id": 6,
+    "label": "Cistos odontogênicos"
+  },
+  {
+    "id": 7,
+    "label": "Tumores odontogênicos"
+  },
+  {
+    "id": 8,
+    "label": "Patologia Óssea"
+  },
+  {
+    "id": 9,
+    "label": "Neoplasias benignas"
+  },
+  {
+    "id": 10,
+    "label": "Doenças dermatológicas"
+  }
+]
   
