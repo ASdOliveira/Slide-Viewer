@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:slide_viewer/injuriesSubGroup.dart';
 
 class ButtonData {
   final int id;
@@ -32,13 +33,17 @@ class InjuriesGroupState extends State<InjuriesGroup> {
   }
 
   Future<void> loadButtonData() async {
-    String jsonContent = await DefaultAssetBundle.of(context)
-        .loadString('assets/patologies.json');
+    try {
+      String jsonContent = await DefaultAssetBundle.of(context)
+          .loadString('assets/patologies.json');
 
-    List<dynamic> jsonData = json.decode(jsonContent);
-    setState(() {
-      buttons = jsonData.map((item) => ButtonData.fromJson(item)).toList();
-    });
+      List<dynamic> jsonData = json.decode(jsonContent);
+      setState(() {
+        buttons = jsonData.map((item) => ButtonData.fromJson(item)).toList();
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -60,14 +65,15 @@ class InjuriesGroupState extends State<InjuriesGroup> {
                   backgroundColor: Colors.blueGrey, // Background color
                 ),
                 onPressed: () {
-                  print(
-                      'Botão ${buttons[index].id} pressionado! Label: ${buttons[index].label}');
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) =>
-                  //           SecondScreen(localId: buttons[index].id)),
-                  // );
+                  // print(
+                  //     'Botão ${buttons[index].id} pressionado! Label: ${buttons[index].label}');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => InjuriesSubGroup(
+                            parentId: buttons[index].id,
+                            parentName: buttons[index].label)),
+                  );
                 },
                 child: Text(buttons[index].label),
               ),

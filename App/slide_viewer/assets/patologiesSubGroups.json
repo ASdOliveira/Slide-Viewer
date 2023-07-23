@@ -1,0 +1,53 @@
+[
+    {
+      "id": 1,
+      "label": "pai 1",
+      "parent": 1      
+    },
+    {
+      "id": 2,
+      "label": "Pai 1",
+      "parent": 1
+    },
+    {
+      "id": 3,
+      "label": "Patologia da Polpa",
+      "parent": 2
+    },
+    {
+      "id": 4,
+      "label": "Patologia do periápice",
+      "parent": 2
+    },
+    {
+      "id": 5,
+      "label": "Processos proliferativos não neoplásicos",
+      "parent": 1
+    },
+    {
+      "id": 6,
+      "label": "Cistos odontogênicos",
+      "parent": 3
+    },
+    {
+      "id": 7,
+      "label": "Tumores odontogênicos",
+      "parent": 4
+    },
+    {
+      "id": 8,
+      "label": "Patologia Óssea",
+      "parent": 5
+    },
+    {
+      "id": 9,
+      "label": "Neoplasias benignas",
+      "parent": 6
+    },
+    {
+      "id": 10,
+      "label": "Doenças dermatológicas",
+      "parent": 7
+    }
+  ]
+    

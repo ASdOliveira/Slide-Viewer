@@ -92,3 +92,5 @@ flutter:
 
   assets:
     - assets/patologies.json
+    - assets/patologiesSubGroups.json
+    
