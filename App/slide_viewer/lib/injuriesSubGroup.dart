@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:slide_viewer/injuryDetailView.dart';
 
 class ButtonData {
   final int id;
@@ -84,14 +85,14 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
                 backgroundColor: Colors.blueGrey, // Background color
               ),
               onPressed: () {
-                print(
-                    'Botão ${buttonsFiltered[index].id} pressionado! Label: ${buttons[index].label}');
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //       builder: (context) =>
-                //           SecondScreen(localId: buttons[index].id)),
-                // );
+                // print(
+                //     'Botão ${buttonsFiltered[index].id} pressionado! Label: ${buttons[index].label}');
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => MyWebView(
+                          title: "DigitalOcean",
+                          selectedUrl:
+                              "https://pathpresenter.net/public/display?token=53717302#",
+                        )));
               },
               child: Text(buttonsFiltered[index].label),
             ),
