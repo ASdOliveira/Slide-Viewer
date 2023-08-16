@@ -94,4 +94,6 @@ flutter:
   assets:
     - assets/patologies.json
     - assets/patologiesSubGroups.json
+    - assets/patologiesDetails.json
+    - assets/images/displasia_fibrosa.jpg
     

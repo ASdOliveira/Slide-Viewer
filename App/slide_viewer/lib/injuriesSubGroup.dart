@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:slide_viewer/injuryDetailView.dart';
+import 'InjuryDetail.dart';
 
 class ButtonData {
   final int id;
@@ -28,7 +28,7 @@ class InjuriesSubGroup extends StatefulWidget {
 class InjuriesSubGroupState extends State<InjuriesSubGroup> {
   List<ButtonData> buttons = [];
   List<ButtonData> buttonsFiltered = [];
-  bool isError = false; //To be Deleted.
+  bool isError = false;
 
   InjuriesSubGroupState();
 
@@ -85,14 +85,19 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
                 backgroundColor: Colors.blueGrey, // Background color
               ),
               onPressed: () {
-                // print(
-                //     'Botão ${buttonsFiltered[index].id} pressionado! Label: ${buttons[index].label}');
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => MyWebView(
-                          title: "DigitalOcean",
-                          selectedUrl:
-                              "https://pathpresenter.net/public/display?token=53717302#",
-                        )));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => InjuryDetail(
+                          parentId: buttons[index].id,
+                          parentName: buttons[index].label)),
+                );
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (BuildContext context) => MyWebView(
+                //           title: "DigitalOcean",
+                //           selectedUrl:
+                //               "https://pathpresenter.net/public/display?token=53717302#",
+                //         )));
               },
               child: Text(buttonsFiltered[index].label),
             ),

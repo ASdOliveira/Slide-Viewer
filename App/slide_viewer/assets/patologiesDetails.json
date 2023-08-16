@@ -1,0 +1,13 @@
+[
+    {
+      "parent": 1, 
+      "description": "Condição de desenvolvimento caracterizada pela substituição do osso normal por uma proliferação de tecido conjuntivo fibroso celularizado entremeado por trabéculas ósseas irregulares",
+      "clinicalCharacs": "Ausência de dor e edema unilateral são os achados mais comuns e possui um crescimento lento",
+      "radiographicalCharacs": "Imagem em preto e branco que não dá pra ver borrado!",
+      "histopathological": "Trabécula de osso imaturo de formato irregular num estroma celular fibroso",
+      "treatment": "O tratamento da displasia fibrosa envolve abordagens multidisciplinares, incluind manejo da dor, acompanhamento clínico e cirurgia, quando necessário.",
+      "imageName": "displasia_fibrosa.jpg",
+      "url": "www.google.com"
+    }
+]
+    
