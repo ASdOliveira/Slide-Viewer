@@ -1,12 +1,12 @@
 [
     {
       "id": 1,
-      "label": "pai 1",
+      "label": "Displasia Fibrosa 1",
       "parent": 1      
     },
     {
       "id": 2,
-      "label": "Pai 1",
+      "label": "Displasia Fibrosa 2",
       "parent": 1
     },
     {

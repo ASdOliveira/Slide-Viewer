@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'WebSlideView.dart';
 
 class Data {
   final int parent;
@@ -81,14 +82,20 @@ class InjuryDetailState extends State<InjuryDetail> {
     if (dataFiltered.length == 0) {
       return const CircularProgressIndicator();
     }
-    // final dataFinal = dataFiltered.length;
-    // if (isError) {
-    //   print("true");
-    // } else {
-    //   print("false");
-    // }
 
-    Data _data = dataFiltered.first;
+    Text CustomSectionTitle(String textToDisplay) {
+      return Text(
+        textToDisplay,
+        textAlign: TextAlign.center,
+        style: TextStyle(fontWeight: FontWeight.bold),
+      );
+    }
+
+    Text CustomContent(String textToDisplay) {
+      return Text(textToDisplay, textAlign: TextAlign.justify);
+    }
+
+    Data data = dataFiltered.first;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueGrey,
@@ -100,32 +107,38 @@ class InjuryDetailState extends State<InjuryDetail> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Descrição"),
-                SizedBox(height: 10),
-                Text(_data.description),
-                SizedBox(height: 10),
-                const Text("Características Clínicas"),
-                SizedBox(height: 10),
-                Text(_data.clinicalCharacs),
-                SizedBox(height: 10),
-                const Text("Características Radiográficas"),
-                SizedBox(height: 10),
-                Text(_data.radiographicalCharacs),
-                SizedBox(height: 10),
-                const Text("Histopatológico"),
-                SizedBox(height: 10),
-                Text(_data.histopathological),
-                SizedBox(height: 10),
-                const Text("Tratamento"),
-                SizedBox(height: 10),
-                Text(_data.treatment),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
+                CustomSectionTitle("Descrição"),
+                const SizedBox(height: 10),
+                CustomContent(data.description),
+                const SizedBox(height: 10),
+                CustomSectionTitle("Características Clínicas"),
+                const SizedBox(height: 10),
+                CustomContent(data.clinicalCharacs),
+                const SizedBox(height: 10),
+                CustomSectionTitle("Características Radiográficas"),
+                const SizedBox(height: 10),
+                CustomContent(data.radiographicalCharacs),
+                const SizedBox(height: 10),
+                CustomSectionTitle("Histopatológico"),
+                const SizedBox(height: 10),
+                CustomContent(data.histopathological),
+                const SizedBox(height: 10),
+                CustomSectionTitle("Tratamento"),
+                const SizedBox(height: 10),
+                CustomContent(data.treatment),
+                const SizedBox(height: 10),
+                CustomSectionTitle("Lâmina (clique para ampliar)"),
+                const SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {
-                    // Ação quando a imagem for clicada
-                    print('Imagem clicada!');
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => WebSlideView(
+                              title: widget.parentName,
+                              selectedUrl: data.url,
+                            )));
                   },
-                  child: Image.asset('assets/images/${_data.imageName}'),
+                  child: Image.asset('assets/images/${data.imageName}'),
                 ),
               ],
             ),
