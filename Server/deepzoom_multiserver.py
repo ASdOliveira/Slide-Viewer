@@ -7,7 +7,6 @@ from io import BytesIO
 import os
 from threading import Lock
 import zlib
-from functools import lru_cache
 
 from PIL import ImageCms
 from flask import Flask, abort, make_response, render_template, url_for
@@ -41,24 +40,19 @@ SRGB_PROFILE_BYTES = zlib.decompress(
     )
 )
 SRGB_PROFILE = ImageCms.getOpenProfile(BytesIO(SRGB_PROFILE_BYTES))
-MAX_CACHE_SIZE_FOR_IMAGE_IN_PATH = 30
-MAX_CACHE_FOR_IMAGE_DECODED = 10000
-hint_times_cache1 = 0
-hint_times_cache2 = 0
-hint_times_cache3 = 0
 
 def create_app(config=None, config_file=None):
     # Create and configure app
     app = Flask(__name__)
     app.config.from_mapping(
         SLIDE_DIR='.',
-        SLIDE_CACHE_SIZE= 100000,  #100.000 itens in dict
-        SLIDE_TILE_CACHE_MB= 1024,  # max size in MB, 1GB
+        SLIDE_CACHE_SIZE= 10, #10,
+        SLIDE_TILE_CACHE_MB= 128, #128,
         DEEPZOOM_FORMAT='jpeg',
         DEEPZOOM_TILE_SIZE=254,
-        DEEPZOOM_OVERLAP= 10,
+        DEEPZOOM_OVERLAP= 10, #1,
         DEEPZOOM_LIMIT_BOUNDS=False,
-        DEEPZOOM_TILE_QUALITY= 100, 
+        DEEPZOOM_TILE_QUALITY= 100, #75,
         DEEPZOOM_COLOR_MODE='absolute-colorimetric',
     )
     app.config.from_envvar('DEEPZOOM_MULTISERVER_SETTINGS', silent=True)
@@ -83,31 +77,20 @@ def create_app(config=None, config_file=None):
     )
 
     # Helper functions
-    
     def get_slide(path):
-        get_path(path)
-        path = get_path(path)
-        try:
-            slide = app.cache.get(path)
-            slide.filename = os.path.basename(path)
-            return slide
-        except OpenSlideError:
-            abort(404)
-    
-    @lru_cache(maxsize=MAX_CACHE_SIZE_FOR_IMAGE_IN_PATH)
-    def get_path(path):
-        global hint_times_cache1
-        hint_times_cache1 = hint_times_cache1 + 1
-        print("get path cache hints: " + str(hint_times_cache1))
-
         path = os.path.abspath(os.path.join(app.basedir, path))
         if not path.startswith(app.basedir + os.path.sep):
             # Directory traversal
             abort(404)
         if not os.path.exists(path):
             abort(404)
-        return path
-    
+        try:
+            slide = app.cache.get(path)
+            slide.filename = os.path.basename(path)
+            return slide
+        except OpenSlideError:
+            abort(404)
+
     # Set up routes
     @app.route('/')
     def index():
@@ -134,14 +117,16 @@ def create_app(config=None, config_file=None):
 
     @app.route('/<path:path>_files/<int:level>/<int:col>_<int:row>.<format>')
     def tile(path, level, col, row, format):
+        slide = get_slide(path)
         format = format.lower()
         if format != 'jpeg' and format != 'png':
             # Not supported by Deep Zoom
             abort(404)
-        
-        slide = get_slide(path)
-        tile = app.cache.getImageDecoded(slide, path, level, col, row)
-
+        try:
+            tile = slide.get_tile(level, (col, row))
+        except ValueError:
+            # Invalid level or coordinates
+            abort(404)
         slide.transform(tile)
         buf = BytesIO()
         tile.save(
@@ -156,20 +141,33 @@ def create_app(config=None, config_file=None):
 
     return app
 
-
 class _SlideCache:
     def __init__(self, cache_size, tile_cache_mb, dz_opts, color_mode):
         self.cache_size = cache_size
         self.dz_opts = dz_opts
         self.color_mode = color_mode
+        self._lock = Lock()
+        self._cache = OrderedDict()
+        # Share a single tile cache among all slide handles, if supported
+        try:
+            print("Trying to open OpenSlideCache")
+            self._tile_cache = OpenSlideCache(tile_cache_mb * 1024 * 1024)
+            print("OpenSlideCache opened succesfully")
+        except OpenSlideVersionError as error:
+            print("OpenSlideCache error"+ str(error))
+            self._tile_cache = None
 
-    @lru_cache(maxsize=MAX_CACHE_SIZE_FOR_IMAGE_IN_PATH)
     def get(self, path):
-        global hint_times_cache2
-        hint_times_cache2 = hint_times_cache2 + 1
-        print("get cache hints: " + str(hint_times_cache2))
-    
+        with self._lock:
+            if path in self._cache:
+                # Move to end of LRU
+                slide = self._cache.pop(path)
+                self._cache[path] = slide
+                return slide
+
         osr = OpenSlide(path)
+        if self._tile_cache is not None:
+            osr.set_cache(self._tile_cache)
         slide = DeepZoomGenerator(osr, **self.dz_opts)
         try:
             mpp_x = osr.properties[openslide.PROPERTY_NAME_MPP_X]
@@ -179,20 +177,12 @@ class _SlideCache:
             slide.mpp = 0
         slide.transform = self._get_transform(osr)
 
+        with self._lock:
+            if path not in self._cache:
+                if len(self._cache) == self.cache_size:
+                    self._cache.popitem(last=False)
+                self._cache[path] = slide
         return slide
-    
-    @lru_cache(maxsize=MAX_CACHE_FOR_IMAGE_DECODED)
-    def getImageDecoded(self, slide, path, level, col, row):
-        global hint_times_cache3
-        hint_times_cache3 = hint_times_cache3 + 1
-        print("get image decoded cache hints: " + str(hint_times_cache3))
-        try:
-            tile = slide.get_tile(level, (col, row))
-        except ValueError:
-            # Invalid level or coordinates
-            abort(404)
-        return tile
-
 
     def _get_transform(self, image):
         if image.color_profile is None:
