@@ -1,4 +1,4 @@
-#### //// #!/usr/bin/env python
+#!/usr/bin/env python
 
 from argparse import ArgumentParser
 import base64
@@ -10,7 +10,6 @@ import zlib
 
 from PIL import ImageCms
 from flask import Flask, abort, make_response, render_template, url_for
-
 
 if os.name == 'nt':
     _dll_path = os.getenv('OPENSLIDE_PATH')
@@ -42,106 +41,6 @@ SRGB_PROFILE_BYTES = zlib.decompress(
 )
 SRGB_PROFILE = ImageCms.getOpenProfile(BytesIO(SRGB_PROFILE_BYTES))
 
-def create_app(config=None, config_file=None):
-    # Create and configure app
-    app = Flask(__name__)
-    app.config.from_mapping(
-        SLIDE_DIR='.',
-        SLIDE_CACHE_SIZE= 10, #10,
-        SLIDE_TILE_CACHE_MB= 128, #128,
-        DEEPZOOM_FORMAT='jpeg',
-        DEEPZOOM_TILE_SIZE=254,
-        DEEPZOOM_OVERLAP= 10, #1,
-        DEEPZOOM_LIMIT_BOUNDS=False,
-        DEEPZOOM_TILE_QUALITY= 100, #75,
-        DEEPZOOM_COLOR_MODE='absolute-colorimetric',
-    )
-    app.config.from_envvar('DEEPZOOM_MULTISERVER_SETTINGS', silent=True)
-    if config_file is not None:
-        app.config.from_pyfile(config_file)
-    if config is not None:
-        app.config.from_mapping(config)
-
-    # Set up cache
-    app.basedir = os.path.abspath(app.config['SLIDE_DIR'])
-    config_map = {
-        'DEEPZOOM_TILE_SIZE': 'tile_size',
-        'DEEPZOOM_OVERLAP': 'overlap',
-        'DEEPZOOM_LIMIT_BOUNDS': 'limit_bounds',
-    }
-    opts = {v: app.config[k] for k, v in config_map.items()}
-    app.cache = _SlideCache(
-        app.config['SLIDE_CACHE_SIZE'],
-        app.config['SLIDE_TILE_CACHE_MB'],
-        opts,
-        app.config['DEEPZOOM_COLOR_MODE'],
-    )
-
-    # Helper functions
-    def get_slide(path):
-        path = os.path.abspath(os.path.join(app.basedir, path))
-        if not path.startswith(app.basedir + os.path.sep):
-            # Directory traversal
-            abort(404)
-        if not os.path.exists(path):
-            abort(404)
-        try:
-            slide = app.cache.get(path)
-            slide.filename = os.path.basename(path)
-            return slide
-        except OpenSlideError:
-            abort(404)
-
-    # Set up routes
-    @app.route('/')
-    def index():
-        return render_template('files.html', root_dir=_Directory(app.basedir))
-
-    @app.route('/<path:path>')
-    def slide(path):
-        slide = get_slide(path)
-        slide_url = url_for('dzi', path=path)
-        return render_template(
-            'slide-fullpage.html',
-            slide_url=slide_url,
-            slide_filename=slide.filename,
-            slide_mpp=slide.mpp,
-        )
-
-    @app.route('/<path:path>.dzi')
-    def dzi(path):
-        slide = get_slide(path)
-        format = app.config['DEEPZOOM_FORMAT']
-        resp = make_response(slide.get_dzi(format))
-        resp.mimetype = 'application/xml'
-        return resp
-
-    @app.route('/<path:path>_files/<int:level>/<int:col>_<int:row>.<format>')
-    def tile(path, level, col, row, format):
-        slide = get_slide(path)
-        format = format.lower()
-        if format != 'jpeg' and format != 'png':
-            # Not supported by Deep Zoom
-            abort(404)
-        try:
-            tile = slide.get_tile(level, (col, row))
-        except ValueError:
-            # Invalid level or coordinates
-            abort(404)
-        slide.transform(tile)
-        buf = BytesIO()
-        tile.save(
-            buf,
-            format,
-            quality=app.config['DEEPZOOM_TILE_QUALITY'],
-            icc_profile=tile.info.get('icc_profile'),
-        )
-        resp = make_response(buf.getvalue())
-        resp.mimetype = 'image/%s' % format
-        return resp
-
-    return app
-
 class _SlideCache:
     def __init__(self, cache_size, tile_cache_mb, dz_opts, color_mode):
         self.cache_size = cache_size
@@ -151,11 +50,8 @@ class _SlideCache:
         self._cache = OrderedDict()
         # Share a single tile cache among all slide handles, if supported
         try:
-            print("Trying to open OpenSlideCache")
             self._tile_cache = OpenSlideCache(tile_cache_mb * 1024 * 1024)
-            print("OpenSlideCache opened succesfully")
         except OpenSlideVersionError as error:
-            print("OpenSlideCache error"+ str(error))
             self._tile_cache = None
 
     def get(self, path):
@@ -238,116 +134,108 @@ class _Directory:
             elif OpenSlide.detect_format(cur_path):
                 self.children.append(_SlideFile(cur_relpath))
 
-
 class _SlideFile:
     def __init__(self, relpath):
         self.name = os.path.basename(relpath)
         self.url_path = relpath
 
+app = Flask(__name__)
+app.config.from_mapping(
+    SLIDE_DIR='./images',
+    SLIDE_CACHE_SIZE= 10, #10,
+    SLIDE_TILE_CACHE_MB= 128, #128,
+    DEEPZOOM_FORMAT='jpeg',
+    DEEPZOOM_TILE_SIZE=254,
+    DEEPZOOM_OVERLAP= 10, #1,
+    DEEPZOOM_LIMIT_BOUNDS=False,
+    DEEPZOOM_TILE_QUALITY= 100, #75,
+    DEEPZOOM_COLOR_MODE='absolute-colorimetric',
+)
+app.config.from_envvar('DEEPZOOM_MULTISERVER_SETTINGS', silent=True)
+# if config_file is not None:
+#     app.config.from_pyfile(config_file)
+# if config is not None:
+#     app.config.from_mapping(config)
+
+# Set up cache
+app.basedir = os.path.abspath(app.config['SLIDE_DIR'])
+config_map = {
+    'DEEPZOOM_TILE_SIZE': 'tile_size',
+    'DEEPZOOM_OVERLAP': 'overlap',
+    'DEEPZOOM_LIMIT_BOUNDS': 'limit_bounds',
+}
+opts = {v: app.config[k] for k, v in config_map.items()}
+app.cache = _SlideCache(
+    app.config['SLIDE_CACHE_SIZE'],
+    app.config['SLIDE_TILE_CACHE_MB'],
+    opts,
+    app.config['DEEPZOOM_COLOR_MODE'],
+)
+
+# Helper functions
+def get_slide(path):
+    path = os.path.abspath(os.path.join(app.basedir, path))
+    if not path.startswith(app.basedir + os.path.sep):
+        # Directory traversal
+        abort(404)
+    if not os.path.exists(path):
+        abort(404)
+    try:
+        slide = app.cache.get(path)
+        slide.filename = os.path.basename(path)
+        return slide
+    except OpenSlideError:
+        abort(404)
+
+# Set up routes
+@app.route('/')
+def index():
+    return render_template('files.html', root_dir=_Directory(app.basedir))
+
+@app.route('/<path:path>')
+def slide(path):
+    slide = get_slide(path)
+    slide_url = url_for('dzi', path=path)
+    return render_template(
+        'slide-fullpage.html',
+        slide_url=slide_url,
+        slide_filename=slide.filename,
+        slide_mpp=slide.mpp,
+    )
+
+@app.route('/<path:path>.dzi')
+def dzi(path):
+    slide = get_slide(path)
+    format = app.config['DEEPZOOM_FORMAT']
+    resp = make_response(slide.get_dzi(format))
+    resp.mimetype = 'application/xml'
+    return resp
+
+@app.route('/<path:path>_files/<int:level>/<int:col>_<int:row>.<format>')
+def tile(path, level, col, row, format):
+    slide = get_slide(path)
+    format = format.lower()
+    if format != 'jpeg' and format != 'png':
+        # Not supported by Deep Zoom
+        abort(404)
+    try:
+        tile = slide.get_tile(level, (col, row))
+    except ValueError:
+        # Invalid level or coordinates
+        abort(404)
+    slide.transform(tile)
+    buf = BytesIO()
+    tile.save(
+        buf,
+        format,
+        quality=app.config['DEEPZOOM_TILE_QUALITY'],
+        icc_profile=tile.info.get('icc_profile'),
+    )
+    resp = make_response(buf.getvalue())
+    resp.mimetype = 'image/%s' % format
+    return resp
+
 
 if __name__ == '__main__':
-    parser = ArgumentParser(usage='%(prog)s [options] [SLIDE-DIRECTORY]')
-    parser.add_argument(
-        '-B',
-        '--ignore-bounds',
-        dest='DEEPZOOM_LIMIT_BOUNDS',
-        default=True,
-        action='store_false',
-        help='display entire scan area',
-    )
-    parser.add_argument(
-        '--color-mode',
-        dest='DEEPZOOM_COLOR_MODE',
-        choices=[
-            'absolute-colorimetric',
-            'perceptual',
-            'relative-colorimetric',
-            'saturation',
-            'embed',
-            'ignore',
-        ],
-        default='absolute-colorimetric',
-        help=(
-            'convert tiles to sRGB using specified rendering intent, or '
-            'embed original ICC profile, or ignore ICC profile (compat) '
-            '[absolute-colorimetric]'
-        ),
-    )
-    parser.add_argument(
-        '-c', '--config', metavar='FILE', dest='config', help='config file'
-    )
-    parser.add_argument(
-        '-d',
-        '--debug',
-        dest='DEBUG',
-        action='store_true',
-        help='run in debugging mode (insecure)',
-    )
-    parser.add_argument(
-        '-e',
-        '--overlap',
-        metavar='PIXELS',
-        dest='DEEPZOOM_OVERLAP',
-        type=int,
-        help='overlap of adjacent tiles [1]',
-    )
-    parser.add_argument(
-        '-f',
-        '--format',
-        metavar='{jpeg|png}',
-        dest='DEEPZOOM_FORMAT',
-        help='image format for tiles [jpeg]',
-    )
-    parser.add_argument(
-        '-l',
-        '--listen',
-        metavar='ADDRESS',
-        dest='host',
-        default='127.0.0.1',
-        help='address to listen on [127.0.0.1]',
-    )
-    parser.add_argument(
-        '-p',
-        '--port',
-        metavar='PORT',
-        dest='port',
-        type=int,
-        default=5000,
-        help='port to listen on [5000]',
-    )
-    parser.add_argument(
-        '-Q',
-        '--quality',
-        metavar='QUALITY',
-        dest='DEEPZOOM_TILE_QUALITY',
-        type=int,
-        default=100,
-        help='JPEG compression quality [75]',
-    )
-    parser.add_argument(
-        '-s',
-        '--size',
-        metavar='PIXELS',
-        dest='DEEPZOOM_TILE_SIZE',
-        type=int,
-        help='tile size [254]',
-    )
-    parser.add_argument(
-        'SLIDE_DIR',
-        metavar='SLIDE-DIRECTORY',
-        default="./images",
-        nargs='?',
-        help='slide directory',
-    )
+    app.run(host='0.0.0.0', port='5000', threaded=True)
 
-    args = parser.parse_args()
-    config = {}
-    config_file = args.config
-    # Set only those settings specified on the command line
-    for k in dir(args):
-        v = getattr(args, k)
-        if not k.startswith('_') and v is not None:
-            config[k] = v
-    app = create_app(config, config_file)
-
-    app.run(host=args.host, port=args.port, threaded=True)
