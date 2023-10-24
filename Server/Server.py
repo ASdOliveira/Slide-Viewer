@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#### //// #!/usr/bin/env python
 
 from argparse import ArgumentParser
 import base64
@@ -10,6 +10,7 @@ import zlib
 
 from PIL import ImageCms
 from flask import Flask, abort, make_response, render_template, url_for
+
 
 if os.name == 'nt':
     _dll_path = os.getenv('OPENSLIDE_PATH')
@@ -320,6 +321,7 @@ if __name__ == '__main__':
         metavar='QUALITY',
         dest='DEEPZOOM_TILE_QUALITY',
         type=int,
+        default=100,
         help='JPEG compression quality [75]',
     )
     parser.add_argument(
@@ -333,6 +335,7 @@ if __name__ == '__main__':
     parser.add_argument(
         'SLIDE_DIR',
         metavar='SLIDE-DIRECTORY',
+        default="./images",
         nargs='?',
         help='slide directory',
     )
