@@ -80,7 +80,21 @@ class InjuryDetailState extends State<InjuryDetail> {
   @override
   Widget build(BuildContext context) {
     if (dataFiltered.length == 0) {
-      return const CircularProgressIndicator();
+      return const Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(
+                height: 60,
+              ),
+            ],
+          ),
+        ),
+      );
+      //return const CircularProgressIndicator();
     }
 
     Text CustomSectionTitle(String textToDisplay) {
@@ -92,7 +106,10 @@ class InjuryDetailState extends State<InjuryDetail> {
     }
 
     Text CustomContent(String textToDisplay) {
-      return Text(textToDisplay, textAlign: TextAlign.justify);
+      return Text(
+        textToDisplay,
+        textAlign: TextAlign.justify,
+      );
     }
 
     Data data = dataFiltered.first;
@@ -120,7 +137,7 @@ class InjuryDetailState extends State<InjuryDetail> {
                 const SizedBox(height: 10),
                 CustomContent(data.radiographicalCharacs),
                 const SizedBox(height: 10),
-                CustomSectionTitle("Histopatológico"),
+                CustomSectionTitle("Características Histopatológicas"),
                 const SizedBox(height: 10),
                 CustomContent(data.histopathological),
                 const SizedBox(height: 10),
@@ -130,16 +147,17 @@ class InjuryDetailState extends State<InjuryDetail> {
                 const SizedBox(height: 10),
                 CustomSectionTitle("Lâmina (clique para ampliar)"),
                 const SizedBox(height: 10),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => WebSlideView(
-                              title: widget.parentName,
-                              selectedUrl: data.url,
-                            )));
-                  },
-                  child: Image.asset('assets/images/${data.imageName}'),
-                ),
+                if (data.imageName.isNotEmpty)
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => WebSlideView(
+                                title: widget.parentName,
+                                selectedUrl: data.url,
+                              )));
+                    },
+                    child: Image.asset('assets/images/${data.imageName}'),
+                  ),
               ],
             ),
           ),
