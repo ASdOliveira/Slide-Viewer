@@ -40,6 +40,7 @@ class InjuriesGroupState extends State<InjuriesGroup> {
       List<dynamic> jsonData = json.decode(jsonContent);
       setState(() {
         buttons = jsonData.map((item) => ButtonData.fromJson(item)).toList();
+        buttons.sort((a, b) => a.label.compareTo(b.label));
       });
     } catch (e) {
       print(e);
@@ -59,24 +60,26 @@ class InjuriesGroupState extends State<InjuriesGroup> {
           itemCount: buttons.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.all(25),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueGrey, // Background color
-                ),
-                onPressed: () {
-                  // print(
-                  //     'Botão ${buttons[index].id} pressionado! Label: ${buttons[index].label}');
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => InjuriesSubGroup(
-                            parentId: buttons[index].id,
-                            parentName: buttons[index].label)),
-                  );
-                },
-                child: Text(buttons[index].label),
-              ),
+              padding: const EdgeInsets.all(20),
+              child: SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50))),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => InjuriesSubGroup(
+                                parentId: buttons[index].id,
+                                parentName: buttons[index].label)),
+                      );
+                    },
+                    child: Text(buttons[index].label),
+                  )),
             );
           },
         ),

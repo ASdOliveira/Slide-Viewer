@@ -48,6 +48,7 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
         buttons = jsonData.map((item) => ButtonData.fromJson(item)).toList();
         buttonsFiltered =
             buttons.where((item) => item.parent == widget.parentId).toList();
+        buttonsFiltered.sort((a, b) => a.label.compareTo(b.label));
         isError = buttonsFiltered.isEmpty;
       });
     } catch (e) {
@@ -79,28 +80,26 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
         itemCount: buttonsFiltered.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(25),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueGrey, // Background color
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => InjuryDetail(
-                          parentId: buttons[index].id,
-                          parentName: buttons[index].label)),
-                );
-                // Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (BuildContext context) => MyWebView(
-                //           title: "DigitalOcean",
-                //           selectedUrl:
-                //               "https://pathpresenter.net/public/display?token=53717302#",
-                //         )));
-              },
-              child: Text(buttonsFiltered[index].label),
-            ),
+            padding: const EdgeInsets.all(27),
+            child: SizedBox(
+                height: 50,
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueGrey,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50))),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => InjuryDetail(
+                              parentId: buttonsFiltered[index].id,
+                              parentName: buttonsFiltered[index].label)),
+                    );
+                  },
+                  child: Text(buttonsFiltered[index].label),
+                )),
           );
         },
       ),
