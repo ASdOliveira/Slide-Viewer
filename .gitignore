@@ -1,2 +1,4 @@
 .vscode/
 .idea/
+Server/images/
+Server/__pycache__/
