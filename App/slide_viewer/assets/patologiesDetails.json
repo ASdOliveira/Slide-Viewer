@@ -1,13 +1,23 @@
 [
     {
       "parent": 1, 
-      "description": "Condição de desenvolvimento caracterizada pela substituição do osso normal por uma proliferação de tecido conjuntivo fibroso celularizado entremeado por trabéculas ósseas irregulares",
-      "clinicalCharacs": "Ausência de dor e edema unilateral são os achados mais comuns e possui um crescimento lento",
-      "radiographicalCharacs": "Imagem em preto e branco que não dá pra ver borrado!",
-      "histopathological": "Trabécula de osso imaturo de formato irregular num estroma celular fibroso",
-      "treatment": "O tratamento da displasia fibrosa envolve abordagens multidisciplinares, incluind manejo da dor, acompanhamento clínico e cirurgia, quando necessário.",
-      "imageName": "displasia_fibrosa.jpg",
-      "url": "http://slideviewer.com.br/AF.mrxs"
+      "description": "Resultado da ruptura de um ducto de glândula salivar e extravasamento de mucina para dentro dos tecidos moles vizinhos.",
+      "clinicalCharacs": "Aumentos de volume mucosos arredondados, que são comuns em crianças e adultos jovens. Apresenta coloração azulada ou transparente, com característica flutuante. Acomete com mais frequência o lábio inferior.",
+      "radiographicalCharacs": "Não apresenta achados radiográficos",
+      "histopathological": "Se apresenta como uma área de mucina extravasada, circundada por tecido de granulação reacional, podendo apresentar também um infiltrado inflamatório crônico.",
+      "treatment": "Alguns casos se rompem e cicatrizam sozinhas. Em outros casos, é necessário a excisão cirúrgica.",
+      "imageName": "",
+      "url": ""
+    },
+    {
+      "parent": 2, 
+      "description": "É a inflamação das glândulas salivares que podem ser desenvolvidas por causas infecciosas ou não infecciosas. A infecção viral mais comum é a caxumba. Também pode ser causada por infecção bacteriana.",
+      "clinicalCharacs": "A sialodenite bacteriana aguda causa inchaço na glândula e dor, a pele sobrejacente pode se apresentar quente e eritematosa. Pode estar associada com febre baixa e trismo, além da drenagem de secreção purulenta pelo orifício da glândula. A sialodenite crônica pode causar inchaços periódicos e dor quando a glândula é estimulada.",
+      "radiographicalCharacs": "Não apresenta achados radiográficos",
+      "histopathological": "A sialoadenite aguda, observa-se um acúmulo de neutrófilos dentro do sistema ductal e acinar. A sialoadenite crônica é caracterizada por infiltração difusa ou focal do parênquima glandular por linfócitos e plasmócitos. A atrofia dos ácinos é comum, bem como a dilatação ductal.",
+      "treatment": "O tratamento da sialoadenite aguda inclui antibioticoterapia apropriada e a reidratação do paciente para estimular o fluxo salivar.\nO manejo da sialoadenite crônica varia de uma terapia conservadora até a intervenção cirúrgica. A conduta inicial geralmente inclui antibióticos, analgésicos, sialogogos e massagem glandular.",
+      "imageName": "",
+      "url": "Lesões de glandulas salivares/Sialoadenite.mrxs"
     }
 ]
     

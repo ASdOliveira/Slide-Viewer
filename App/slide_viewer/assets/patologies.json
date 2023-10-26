@@ -5,7 +5,7 @@
   },
   {
     "id": 2,
-    "label": "Patologia das Glândulas salivares"
+    "label": "Lesões das Glândulas Salivares"
   },
   {
     "id": 3,
@@ -13,19 +13,19 @@
   },
   {
     "id": 4,
-    "label": "Patologia do periápice"
+    "label": "Patologia do Periápice"
   },
   {
     "id": 5,
-    "label": "Processos proliferativos não neoplásicos"
+    "label": "Processos Proliferativos Não Neoplásicos"
   },
   {
     "id": 6,
-    "label": "Cistos odontogênicos"
+    "label": "Cistos Odontogênicos"
   },
   {
     "id": 7,
-    "label": "Tumores odontogênicos"
+    "label": "Tumores Odontogênicos"
   },
   {
     "id": 8,
@@ -33,11 +33,11 @@
   },
   {
     "id": 9,
-    "label": "Neoplasias benignas"
+    "label": "Neoplasias Benignas"
   },
   {
     "id": 10,
-    "label": "Doenças dermatológicas"
+    "label": "Doenças Dermatológicas"
   }
 ]
   
