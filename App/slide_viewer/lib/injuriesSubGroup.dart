@@ -52,56 +52,94 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
         isError = buttonsFiltered.isEmpty;
       });
     } catch (e) {
-      print(e);
       isError = true;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (isError) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.parentName),
-        ),
-        body: const Center(
-          child: Text('Ocorreu um erro ao carregar a lista de botões.'),
-        ),
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        title:
-            Center(child: Text(widget.parentName, textAlign: TextAlign.center)),
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF672855),
+        title: const TextField(
+          cursorColor: Colors.white,
+          style: TextStyle(
+              fontSize: 16,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+              color: Color(0xFFFFFFFF)),
+          decoration: InputDecoration(
+              filled: true,
+              fillColor: Color(0xFF9C3C81),
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(),
+              hintText: 'Pesquisar',
+              hintStyle: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFFFFFFFF)),
+              focusColor: Color(0xFFFFFFFF),
+              prefixIconColor: Colors.white,
+              hoverColor: Color(0xFF9C3C81)),
+        ),
       ),
-      body: ListView.builder(
-        itemCount: buttonsFiltered.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(27),
-            child: SizedBox(
-                height: 50,
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueGrey,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50))),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => InjuryDetail(
-                              parentId: buttonsFiltered[index].id,
-                              parentName: buttonsFiltered[index].label)),
-                    );
-                  },
-                  child: Text(buttonsFiltered[index].label),
-                )),
-          );
-        },
+      backgroundColor: const Color(0xFFEAEFF3),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(35.0),
+            child: Text(
+              widget.parentName,
+              style: const TextStyle(
+                  fontSize: 22,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF672855)),
+            ),
+          ),
+          Expanded(
+            child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    childAspectRatio: 3),
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                scrollDirection: Axis.vertical,
+                itemCount: buttonsFiltered.length,
+                itemBuilder: (context, index) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => InjuryDetail(
+                                parentId: buttonsFiltered[index].id,
+                                parentName: buttonsFiltered[index].label)),
+                      );
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    child: Text(
+                      buttonsFiltered[index].label,
+                      textAlign: TextAlign.center,
+                      softWrap: true,
+                      style: const TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF9C3C81)),
+                    ),
+                  );
+                }),
+          ),
+        ],
       ),
     );
   }

@@ -111,10 +111,14 @@ class InjuriesGroupState extends State<InjuriesGroup> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => InjuriesSubGroup(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => InjuriesSubGroup(
                                   parentId: buttons[index].id,
-                                  parentName: buttons[index].label)),
+                                  parentName: buttons[index].label),
+                              transitionDuration:
+                                  const Duration(milliseconds: 200),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(opacity: a, child: c)),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -127,7 +131,7 @@ class InjuriesGroupState extends State<InjuriesGroup> {
                             fontSize: 15,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
-                            color: Color(0xFF672855)),
+                            color: Color(0xFF9C3C81)),
                       ),
                     );
                   }),
