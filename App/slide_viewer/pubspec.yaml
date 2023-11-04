@@ -90,10 +90,14 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
 
   assets:
     - assets/patologies.json
     - assets/patologiesSubGroups.json
     - assets/patologiesDetails.json
     - assets/images/displasia_fibrosa.jpg
-    

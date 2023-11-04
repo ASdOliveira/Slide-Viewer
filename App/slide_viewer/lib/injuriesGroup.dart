@@ -56,33 +56,73 @@ class InjuriesGroupState extends State<InjuriesGroup> {
           title: const Center(
               child: Text('Grupo de lesões', textAlign: TextAlign.center)),
         ),
-        body: ListView.builder(
-          itemCount: buttons.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(20),
-              child: SizedBox(
-                  height: 50,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50))),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => InjuriesSubGroup(
-                                parentId: buttons[index].id,
-                                parentName: buttons[index].label)),
-                      );
-                    },
-                    child: Text(buttons[index].label),
-                  )),
-            );
-          },
+        backgroundColor: const Color(0xFFEAEFF3),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(35.0),
+              child: Text(
+                "Grupo de Lesões",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF672855)),
+              ),
+            ),
+            Expanded(
+              child: GridView(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16),
+                shrinkWrap: true,
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                scrollDirection: Axis.vertical,
+                children: [
+                  Image.network('https://picsum.photos/250?image=1'),
+                  Image.network('https://picsum.photos/250?image=2'),
+                  Image.network('https://picsum.photos/250?image=3'),
+                  Image.network('https://picsum.photos/250?image=4'),
+                  Image.network('https://picsum.photos/250?image=1'),
+                  Image.network('https://picsum.photos/250?image=2'),
+                  Image.network('https://picsum.photos/250?image=3'),
+                  Image.network('https://picsum.photos/250?image=4'),
+                ],
+              ),
+            ),
+          ],
         ),
+
+        // ListView.builder(
+        //   itemCount: buttons.length,
+        //   itemBuilder: (context, index) {
+        //     return Padding(
+        //       padding: const EdgeInsets.all(20),
+        //       child: SizedBox(
+        //           height: 50,
+        //           width: double.infinity,
+        //           child: ElevatedButton(
+        //             style: ElevatedButton.styleFrom(
+        //                 backgroundColor: Colors.blueGrey,
+        //                 shape: RoundedRectangleBorder(
+        //                     borderRadius: BorderRadius.circular(50))),
+        //             onPressed: () {
+        //               Navigator.push(
+        //                 context,
+        //                 MaterialPageRoute(
+        //                     builder: (context) => InjuriesSubGroup(
+        //                         parentId: buttons[index].id,
+        //                         parentName: buttons[index].label)),
+        //               );
+        //             },
+        //             child: Text(buttons[index].label),
+        //           )),
+        //     );
+        //   },
+        // ),
       ),
     );
   }
