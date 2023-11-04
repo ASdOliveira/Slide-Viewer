@@ -53,8 +53,30 @@ class InjuriesGroupState extends State<InjuriesGroup> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFF672855),
-          title: const Center(
-              child: Text('Grupo de lesões', textAlign: TextAlign.center)),
+          // title: const Center(
+          //     child: Text('Grupo de lesões', textAlign: TextAlign.center)),
+          title: const TextField(
+            cursorColor: Colors.white,
+            style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w500,
+                color: Color(0xFFFFFFFF)),
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xFF9C3C81),
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(),
+                hintText: 'Pesquisar',
+                hintStyle: TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFFFFFFFF)),
+                focusColor: Color(0xFFFFFFFF),
+                prefixIconColor: Colors.white,
+                hoverColor: Color(0xFF9C3C81)),
+          ),
         ),
         backgroundColor: const Color(0xFFEAEFF3),
         body: Column(
