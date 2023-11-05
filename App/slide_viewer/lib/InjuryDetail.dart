@@ -79,88 +79,162 @@ class InjuryDetailState extends State<InjuryDetail> {
 
   @override
   Widget build(BuildContext context) {
-    if (dataFiltered.length == 0) {
-      return const Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CircularProgressIndicator(),
-              SizedBox(
-                height: 60,
-              ),
-            ],
-          ),
-        ),
-      );
-      //return const CircularProgressIndicator();
-    }
-
-    Text CustomSectionTitle(String textToDisplay) {
-      return Text(
-        textToDisplay,
-        textAlign: TextAlign.center,
-        style: TextStyle(fontWeight: FontWeight.bold),
-      );
-    }
-
-    Text CustomContent(String textToDisplay) {
-      return Text(
-        textToDisplay,
-        textAlign: TextAlign.justify,
-      );
-    }
-
-    Data data = dataFiltered.first;
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
-          title: Center(
-              child: Text(widget.parentName, textAlign: TextAlign.center)),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF672855),
+        title: const TextField(
+          cursorColor: Colors.white,
+          style: TextStyle(
+              fontSize: 16,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+              color: Color(0xFFFFFFFF)),
+          decoration: InputDecoration(
+              filled: true,
+              fillColor: Color(0xFF9C3C81),
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(),
+              hintText: 'Pesquisar',
+              hintStyle: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFFFFFFFF)),
+              focusColor: Color(0xFFFFFFFF),
+              prefixIconColor: Colors.white,
+              hoverColor: Color(0xFF9C3C81)),
         ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 10),
-                CustomSectionTitle("Descrição"),
-                const SizedBox(height: 10),
-                CustomContent(data.description),
-                const SizedBox(height: 10),
-                CustomSectionTitle("Características Clínicas"),
-                const SizedBox(height: 10),
-                CustomContent(data.clinicalCharacs),
-                const SizedBox(height: 10),
-                CustomSectionTitle("Características Radiográficas"),
-                const SizedBox(height: 10),
-                CustomContent(data.radiographicalCharacs),
-                const SizedBox(height: 10),
-                CustomSectionTitle("Características Histopatológicas"),
-                const SizedBox(height: 10),
-                CustomContent(data.histopathological),
-                const SizedBox(height: 10),
-                CustomSectionTitle("Tratamento"),
-                const SizedBox(height: 10),
-                CustomContent(data.treatment),
-                const SizedBox(height: 10),
-                CustomSectionTitle("Lâmina (clique para ampliar)"),
-                const SizedBox(height: 10),
-                if (data.imageName.isNotEmpty)
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => WebSlideView(
-                                title: widget.parentName,
-                                selectedUrl: data.url,
-                              )));
-                    },
-                    child: Image.asset('assets/images/${data.imageName}'),
-                  ),
-              ],
+      ),
+      backgroundColor: const Color(0xFFEAEFF3),
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(35.0),
+              child: Text(
+                widget.parentName,
+                style: const TextStyle(
+                    fontSize: 22,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF672855)),
+              ),
             ),
-          ),
-        ));
+            Container(
+              alignment: Alignment.center,
+              child: Stack(
+                children: [
+                  Image.asset(
+                    'assets/images/displasia_fibrosa.jpg',
+                    height: 200,
+                    width: double.infinity,
+                    fit: BoxFit.fill,
+                  ),
+                  Positioned(
+                    bottom: 10,
+                    right: 10,
+                    child: Container(
+                      color: const Color(0xFFEAECF3),
+                      child: IconButton(
+                        onPressed: () {
+                          //Add action to open the Image
+                        },
+                        color: const Color(0xFF672855),
+                        icon: const Icon(Icons.zoom_out_map),
+                        iconSize: 35,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ]),
+    );
   }
 }
+
+// if (dataFiltered.length == 0) {
+//   return const Scaffold(
+//     body: Center(
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         children: [
+//           CircularProgressIndicator(),
+//           SizedBox(
+//             height: 60,
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+//   //return const CircularProgressIndicator();
+// }
+
+// Text CustomSectionTitle(String textToDisplay) {
+//   return Text(
+//     textToDisplay,
+//     textAlign: TextAlign.center,
+//     style: TextStyle(fontWeight: FontWeight.bold),
+//   );
+// }
+
+// Text CustomContent(String textToDisplay) {
+//   return Text(
+//     textToDisplay,
+//     textAlign: TextAlign.justify,
+//   );
+// }
+
+// Data data = dataFiltered.first;
+// return Scaffold(
+//     appBar: AppBar(
+//       backgroundColor: Colors.blueGrey,
+//       title: Center(
+//           child: Text(widget.parentName, textAlign: TextAlign.center)),
+//     ),
+//     body: SingleChildScrollView(
+//       child: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             const SizedBox(height: 10),
+//             CustomSectionTitle("Descrição"),
+//             const SizedBox(height: 10),
+//             CustomContent(data.description),
+//             const SizedBox(height: 10),
+//             CustomSectionTitle("Características Clínicas"),
+//             const SizedBox(height: 10),
+//             CustomContent(data.clinicalCharacs),
+//             const SizedBox(height: 10),
+//             CustomSectionTitle("Características Radiográficas"),
+//             const SizedBox(height: 10),
+//             CustomContent(data.radiographicalCharacs),
+//             const SizedBox(height: 10),
+//             CustomSectionTitle("Características Histopatológicas"),
+//             const SizedBox(height: 10),
+//             CustomContent(data.histopathological),
+//             const SizedBox(height: 10),
+//             CustomSectionTitle("Tratamento"),
+//             const SizedBox(height: 10),
+//             CustomContent(data.treatment),
+//             const SizedBox(height: 10),
+//             CustomSectionTitle("Lâmina (clique para ampliar)"),
+//             const SizedBox(height: 10),
+//             if (data.imageName.isNotEmpty)
+//               GestureDetector(
+//                 onTap: () {
+//                   Navigator.of(context).push(MaterialPageRoute(
+//                       builder: (BuildContext context) => WebSlideView(
+//                             title: widget.parentName,
+//                             selectedUrl: data.url,
+//                           )));
+//                 },
+//                 child: Image.asset('assets/images/${data.imageName}'),
+//               ),
+//           ],
+//         ),
+//       ),
+//     ));
