@@ -122,7 +122,9 @@ class InjuriesGroupState extends State<InjuriesGroup> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white),
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5))),
                       child: Text(
                         buttons[index].label,
                         textAlign: TextAlign.center,

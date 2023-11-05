@@ -112,7 +112,7 @@ class InjuryDetailState extends State<InjuryDetail> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(35.0),
+              padding: const EdgeInsets.fromLTRB(20, 15, 0, 15),
               child: Text(
                 widget.parentName,
                 style: const TextStyle(
@@ -149,6 +149,24 @@ class InjuryDetailState extends State<InjuryDetail> {
                   )
                 ],
               ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.all(16),
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      color: const Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: const Text(
+                      "testasdqwasdqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqe"),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Text("teste"),
+                ),
+              ],
             ),
           ]),
     );

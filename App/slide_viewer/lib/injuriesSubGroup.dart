@@ -128,8 +128,10 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
                                 FadeTransition(opacity: a, child: c)),
                       );
                     },
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5))),
                     child: Text(
                       buttonsFiltered[index].label,
                       textAlign: TextAlign.center,
