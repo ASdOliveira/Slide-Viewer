@@ -1,20 +1,8 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+
 import 'package:slide_viewer/injuriesSubGroup.dart';
-
-class ButtonData {
-  final int id;
-  final String label;
-
-  ButtonData({required this.id, required this.label});
-
-  factory ButtonData.fromJson(Map<String, dynamic> json) {
-    return ButtonData(
-      id: json['id'],
-      label: json['label'],
-    );
-  }
-}
+import 'Services/InjuriesGroupService.dart';
+import 'Services/Models/InjuriesGroupModel.dart';
 
 class InjuriesGroup extends StatefulWidget {
   const InjuriesGroup({super.key});
@@ -24,27 +12,11 @@ class InjuriesGroup extends StatefulWidget {
 }
 
 class InjuriesGroupState extends State<InjuriesGroup> {
-  List<ButtonData> buttons = [];
+  List<InjuriesGroupModel> buttons = InjuriesGroupService().getList();
 
   @override
   void initState() {
     super.initState();
-    loadButtonData();
-  }
-
-  Future<void> loadButtonData() async {
-    try {
-      String jsonContent = await DefaultAssetBundle.of(context)
-          .loadString('assets/patologies.json');
-
-      List<dynamic> jsonData = json.decode(jsonContent);
-      setState(() {
-        buttons = jsonData.map((item) => ButtonData.fromJson(item)).toList();
-        buttons.sort((a, b) => a.label.compareTo(b.label));
-      });
-    } catch (e) {
-      print(e);
-    }
   }
 
   @override
@@ -53,8 +25,6 @@ class InjuriesGroupState extends State<InjuriesGroup> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFF672855),
-          // title: const Center(
-          //     child: Text('Grupo de lesões', textAlign: TextAlign.center)),
           title: const TextField(
             cursorColor: Colors.white,
             style: TextStyle(
