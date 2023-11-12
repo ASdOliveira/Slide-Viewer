@@ -18,8 +18,8 @@ TextStyle H2TextStyle(double fontSize) {
 
 TextStyle bodyTextStyle() {
   return const TextStyle(
-      fontSize: 15,
-      fontFamily: 'Poppins',
+      fontSize: 16,
+      fontFamily: 'OpenSans',
       fontWeight: FontWeight.w400,
       color: Color(0xFF404952));
 }

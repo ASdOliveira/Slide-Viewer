@@ -96,6 +96,9 @@ flutter:
         - asset: assets/fonts/Poppins-Regular.ttf
         - asset: assets/fonts/Poppins-Medium.ttf
 
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
   assets:
     - assets/patologies.json
     - assets/patologiesSubGroups.json
