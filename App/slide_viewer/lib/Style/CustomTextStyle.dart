@@ -16,6 +16,14 @@ TextStyle H2TextStyle(double fontSize) {
       color: const Color(0xFF9C3C81));
 }
 
+TextStyle subTitle3TextStyle() {
+  return const TextStyle(
+      fontSize: 15,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w400,
+      color: Color(0xFFFFFFFF));
+}
+
 TextStyle bodyTextStyle() {
   return const TextStyle(
       fontSize: 16,

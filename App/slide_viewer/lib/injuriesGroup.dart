@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slide_viewer/Components/DrawerWidget.dart';
 
 import 'package:slide_viewer/injuriesSubGroup.dart';
 import 'Components/H1TextWidget.dart';
@@ -31,6 +32,7 @@ class InjuriesGroupState extends State<InjuriesGroup> {
             backgroundColor: const Color(0xFF672855),
             title: const SearchWidget()),
         backgroundColor: const Color(0xFFEAEFF3),
+        drawer: DrawerWidget(),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
