@@ -5,20 +5,9 @@ import 'Components/H1TextWidget.dart';
 import 'Components/H2TextWidget.dart';
 import 'Components/SearchWidget.dart';
 import 'InjuryDetail.dart';
+import 'Services/InjuryDetailService.dart';
+import 'Services/Models/InjuryDetailModel.dart';
 import 'Style/CustomButtonStyle.dart';
-
-class ButtonData {
-  final int id;
-  final String label;
-  final int parent;
-
-  ButtonData({required this.id, required this.label, required this.parent});
-
-  factory ButtonData.fromJson(Map<String, dynamic> json) {
-    return ButtonData(
-        id: json['id'], label: json['label'], parent: json['parent']);
-  }
-}
 
 class InjuriesSubGroup extends StatefulWidget {
   final int parentId;
@@ -31,34 +20,15 @@ class InjuriesSubGroup extends StatefulWidget {
 }
 
 class InjuriesSubGroupState extends State<InjuriesSubGroup> {
-  List<ButtonData> buttons = [];
-  List<ButtonData> buttonsFiltered = [];
-  bool isError = false;
+  List<InjuryDetailModel> buttonsFiltered = [];
 
   InjuriesSubGroupState();
 
   @override
   void initState() {
     super.initState();
-    loadButtonData();
-  }
-
-  Future<void> loadButtonData() async {
-    try {
-      String jsonContent = await DefaultAssetBundle.of(context)
-          .loadString('assets/patologiesSubGroups.json');
-
-      List<dynamic> jsonData = json.decode(jsonContent);
-      setState(() {
-        buttons = jsonData.map((item) => ButtonData.fromJson(item)).toList();
-        buttonsFiltered =
-            buttons.where((item) => item.parent == widget.parentId).toList();
-        buttonsFiltered.sort((a, b) => a.label.compareTo(b.label));
-        isError = buttonsFiltered.isEmpty;
-      });
-    } catch (e) {
-      isError = true;
-    }
+    buttonsFiltered =
+        InjuryDetailService().getListFilteredByParent(widget.parentId);
   }
 
   @override
@@ -97,9 +67,8 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
                       Navigator.push(
                         context,
                         PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => InjuryDetail(
-                                parentId: buttonsFiltered[index].id,
-                                parentName: buttonsFiltered[index].label),
+                            pageBuilder: (_, __, ___) =>
+                                InjuryDetail(Id: buttonsFiltered[index].id),
                             transitionDuration:
                                 const Duration(milliseconds: 200),
                             transitionsBuilder: (_, a, __, c) =>

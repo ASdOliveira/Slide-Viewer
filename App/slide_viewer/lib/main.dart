@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'Services/InjuriesGroupService.dart';
+import 'Services/InjuryDetailService.dart';
 import 'injuriesGroup.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await InjuriesGroupService().loadData();
+  await InjuryDetailService().loadData();
 
   runApp(const MyApp());
 }

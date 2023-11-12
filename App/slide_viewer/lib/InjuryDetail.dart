@@ -1,107 +1,34 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:slide_viewer/Services/InjuryDetailService.dart';
+import 'package:slide_viewer/Services/Models/InjuryDetailModel.dart';
 import 'Components/DrawerWidget.dart';
 import 'Components/H1TextWidget.dart';
 import 'Components/InjuryDetailTextContainer.dart';
 import 'Components/SearchWidget.dart';
 import 'WebSlideView.dart';
 
-class Data {
-  final int parent;
-  final String description;
-  final String clinicalCharacs;
-  final String radiographicalCharacs;
-  final String histopathological;
-  final String treatment;
-  final String imageName;
-  final String url;
-
-  Data(
-      {required this.parent,
-      required this.description,
-      required this.clinicalCharacs,
-      required this.radiographicalCharacs,
-      required this.histopathological,
-      required this.treatment,
-      required this.imageName,
-      required this.url});
-
-  factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(
-        parent: json['parent'],
-        description: json['description'],
-        clinicalCharacs: json['clinicalCharacs'],
-        radiographicalCharacs: json['radiographicalCharacs'],
-        histopathological: json['histopathological'],
-        treatment: json['treatment'],
-        imageName: json['imageName'],
-        url: json['url']);
-  }
-}
-
 class InjuryDetail extends StatefulWidget {
-  final int parentId;
-  final String parentName;
+  final int Id;
 
-  const InjuryDetail(
-      {super.key, required this.parentId, required this.parentName});
+  const InjuryDetail({super.key, required this.Id});
 
   @override
   InjuryDetailState createState() => InjuryDetailState();
 }
 
 class InjuryDetailState extends State<InjuryDetail> {
-  List<Data> data = [];
-  List<Data> dataFiltered = [];
-  bool isError = false;
+  late InjuryDetailModel injuryModel;
 
   InjuryDetailState();
 
   @override
   void initState() {
     super.initState();
-    loadJsonData();
-  }
-
-  Future<void> loadJsonData() async {
-    try {
-      String jsonContent = await DefaultAssetBundle.of(context)
-          .loadString('assets/patologiesDetails.json');
-
-      List<dynamic> jsonData = json.decode(jsonContent);
-      setState(() {
-        data = jsonData.map((item) => Data.fromJson(item)).toList();
-        dataFiltered =
-            data.where((item) => item.parent == widget.parentId).toList();
-        isError = dataFiltered.isEmpty;
-      });
-    } catch (e) {
-      print(e);
-      isError = true;
-    }
+    injuryModel = InjuryDetailService().getListFilteredById(widget.Id);
   }
 
   @override
   Widget build(BuildContext context) {
-    if (dataFiltered.isEmpty) {
-      return const Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CircularProgressIndicator(),
-              SizedBox(
-                height: 60,
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    Data injuryInfo = dataFiltered.first;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF672855),
@@ -116,7 +43,7 @@ class InjuryDetailState extends State<InjuryDetail> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 15, 0, 15),
               child: H1TextWidget(
-                text: widget.parentName,
+                text: injuryModel.label,
               ),
             ),
             Container(
@@ -153,18 +80,18 @@ class InjuryDetailState extends State<InjuryDetail> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InjuryDetailTextContainer(
-                        title: "Descrição", body: injuryInfo.description),
+                        title: "Descrição", body: injuryModel.description),
                     InjuryDetailTextContainer(
                         title: "Características Clínicas",
-                        body: injuryInfo.clinicalCharacs),
+                        body: injuryModel.clinicalCharacs),
                     InjuryDetailTextContainer(
                         title: "Características Radiográficas",
-                        body: injuryInfo.radiographicalCharacs),
+                        body: injuryModel.radiographicalCharacs),
                     InjuryDetailTextContainer(
                         title: "Características Histopatológicas",
-                        body: injuryInfo.histopathological),
+                        body: injuryModel.histopathological),
                     InjuryDetailTextContainer(
-                        title: "Tratamento", body: injuryInfo.treatment),
+                        title: "Tratamento", body: injuryModel.treatment),
                   ],
                 ),
               ),
