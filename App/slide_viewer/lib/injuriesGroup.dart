@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:slide_viewer/injuriesSubGroup.dart';
+import 'Components/H1TextWidget.dart';
+import 'Components/H2TextWidget.dart';
+import 'Components/SearchWidget.dart';
+import 'Style/CustomButtonStyle.dart';
 import 'Services/InjuriesGroupService.dart';
 import 'Services/Models/InjuriesGroupModel.dart';
 
@@ -24,30 +28,8 @@ class InjuriesGroupState extends State<InjuriesGroup> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF672855),
-          title: const TextField(
-            cursorColor: Colors.white,
-            style: TextStyle(
-                fontSize: 16,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w500,
-                color: Color(0xFFFFFFFF)),
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: Color(0xFF9C3C81),
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(),
-                hintText: 'Pesquisar',
-                hintStyle: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFFFFFFFF)),
-                focusColor: Color(0xFFFFFFFF),
-                prefixIconColor: Colors.white,
-                hoverColor: Color(0xFF9C3C81)),
-          ),
-        ),
+            backgroundColor: const Color(0xFF672855),
+            title: const SearchWidget()),
         backgroundColor: const Color(0xFFEAEFF3),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -55,13 +37,8 @@ class InjuriesGroupState extends State<InjuriesGroup> {
           children: [
             const Padding(
               padding: EdgeInsets.all(35.0),
-              child: Text(
-                "Grupo de Lesões",
-                style: TextStyle(
-                    fontSize: 22,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF672855)),
+              child: H1TextWidget(
+                text: "Grupo de Lesões",
               ),
             ),
             Expanded(
@@ -91,19 +68,10 @@ class InjuriesGroupState extends State<InjuriesGroup> {
                                   FadeTransition(opacity: a, child: c)),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5))),
-                      child: Text(
-                        buttons[index].label,
-                        textAlign: TextAlign.center,
-                        softWrap: true,
-                        style: const TextStyle(
-                            fontSize: 15,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF9C3C81)),
+                      style: customButtonStyle(),
+                      child: H2TextWidget(
+                        text: buttons[index].label,
+                        fontSize: 15,
                       ),
                     );
                   }),

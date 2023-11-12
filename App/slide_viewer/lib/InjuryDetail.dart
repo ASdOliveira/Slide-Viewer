@@ -1,5 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'Components/H1TextWidget.dart';
+import 'Components/InjuryDetailTextContainer.dart';
+import 'Components/SearchWidget.dart';
 import 'WebSlideView.dart';
 
 class Data {
@@ -77,39 +80,6 @@ class InjuryDetailState extends State<InjuryDetail> {
     }
   }
 
-  Container customTextContainer(String title, String body) {
-    return Container(
-        margin: const EdgeInsets.fromLTRB(16, 10, 16, 10),
-        width: double.infinity,
-        decoration: const BoxDecoration(
-            color: Color(0xFFFFFFFF),
-            borderRadius: BorderRadius.all(Radius.circular(5))),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              title,
-              style: const TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xFF9C3C81)),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              body,
-              textAlign: TextAlign.justify,
-              style: const TextStyle(
-                  fontSize: 15,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF404952)),
-            ),
-          ]),
-        ));
-  }
-
   @override
   Widget build(BuildContext context) {
     if (dataFiltered.isEmpty) {
@@ -135,28 +105,7 @@ class InjuryDetailState extends State<InjuryDetail> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF672855),
-        title: const TextField(
-          cursorColor: Colors.white,
-          style: TextStyle(
-              fontSize: 16,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w500,
-              color: Color(0xFFFFFFFF)),
-          decoration: InputDecoration(
-              filled: true,
-              fillColor: Color(0xFF9C3C81),
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(),
-              hintText: 'Pesquisar',
-              hintStyle: TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xFFFFFFFF)),
-              focusColor: Color(0xFFFFFFFF),
-              prefixIconColor: Colors.white,
-              hoverColor: Color(0xFF9C3C81)),
-        ),
+        title: const SearchWidget(),
       ),
       backgroundColor: const Color(0xFFEAEFF3),
       body: Column(
@@ -165,13 +114,8 @@ class InjuryDetailState extends State<InjuryDetail> {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 15, 0, 15),
-              child: Text(
-                widget.parentName,
-                style: const TextStyle(
-                    fontSize: 22,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF672855)),
+              child: H1TextWidget(
+                text: widget.parentName,
               ),
             ),
             Container(
@@ -207,14 +151,19 @@ class InjuryDetailState extends State<InjuryDetail> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    customTextContainer("Descrição", injuryInfo.description),
-                    customTextContainer(
-                        "Características Clínicas", injuryInfo.clinicalCharacs),
-                    customTextContainer("Características Radiográficas",
-                        injuryInfo.radiographicalCharacs),
-                    customTextContainer("Características Histopatológicas",
-                        injuryInfo.histopathological),
-                    customTextContainer("Tratamento", injuryInfo.treatment),
+                    InjuryDetailTextContainer(
+                        title: "Descrição", body: injuryInfo.description),
+                    InjuryDetailTextContainer(
+                        title: "Características Clínicas",
+                        body: injuryInfo.clinicalCharacs),
+                    InjuryDetailTextContainer(
+                        title: "Características Radiográficas",
+                        body: injuryInfo.radiographicalCharacs),
+                    InjuryDetailTextContainer(
+                        title: "Características Histopatológicas",
+                        body: injuryInfo.histopathological),
+                    InjuryDetailTextContainer(
+                        title: "Tratamento", body: injuryInfo.treatment),
                   ],
                 ),
               ),

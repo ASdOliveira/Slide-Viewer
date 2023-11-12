@@ -1,6 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'Components/H1TextWidget.dart';
+import 'Components/H2TextWidget.dart';
+import 'Components/SearchWidget.dart';
 import 'InjuryDetail.dart';
+import 'Style/CustomButtonStyle.dart';
 
 class ButtonData {
   final int id;
@@ -60,31 +64,9 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFF672855),
-        title: const TextField(
-          cursorColor: Colors.white,
-          style: TextStyle(
-              fontSize: 16,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w500,
-              color: Color(0xFFFFFFFF)),
-          decoration: InputDecoration(
-              filled: true,
-              fillColor: Color(0xFF9C3C81),
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(),
-              hintText: 'Pesquisar',
-              hintStyle: TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xFFFFFFFF)),
-              focusColor: Color(0xFFFFFFFF),
-              prefixIconColor: Colors.white,
-              hoverColor: Color(0xFF9C3C81)),
-        ),
-      ),
+          automaticallyImplyLeading: false,
+          backgroundColor: const Color(0xFF672855),
+          title: const SearchWidget()),
       backgroundColor: const Color(0xFFEAEFF3),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -92,13 +74,8 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
         children: [
           Padding(
             padding: const EdgeInsets.all(35.0),
-            child: Text(
-              widget.parentName,
-              style: const TextStyle(
-                  fontSize: 22,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xFF672855)),
+            child: H1TextWidget(
+              text: widget.parentName,
             ),
           ),
           Expanded(
@@ -128,19 +105,10 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
                                 FadeTransition(opacity: a, child: c)),
                       );
                     },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5))),
-                    child: Text(
-                      buttonsFiltered[index].label,
-                      textAlign: TextAlign.center,
-                      softWrap: true,
-                      style: const TextStyle(
-                          fontSize: 15,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFF9C3C81)),
+                    style: customButtonStyle(),
+                    child: H2TextWidget(
+                      text: buttonsFiltered[index].label,
+                      fontSize: 18,
                     ),
                   );
                 }),
