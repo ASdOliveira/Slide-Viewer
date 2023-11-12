@@ -120,8 +120,8 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
                         context,
                         PageRouteBuilder(
                             pageBuilder: (_, __, ___) => InjuryDetail(
-                                parentId: buttons[index].id,
-                                parentName: buttons[index].label),
+                                parentId: buttonsFiltered[index].id,
+                                parentName: buttonsFiltered[index].label),
                             transitionDuration:
                                 const Duration(milliseconds: 200),
                             transitionsBuilder: (_, a, __, c) =>

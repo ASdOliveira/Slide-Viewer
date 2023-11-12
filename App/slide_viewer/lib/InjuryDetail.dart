@@ -77,8 +77,60 @@ class InjuryDetailState extends State<InjuryDetail> {
     }
   }
 
+  Container customTextContainer(String title, String body) {
+    return Container(
+        margin: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+        width: double.infinity,
+        decoration: const BoxDecoration(
+            color: Color(0xFFFFFFFF),
+            borderRadius: BorderRadius.all(Radius.circular(5))),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              title,
+              style: const TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF9C3C81)),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              body,
+              textAlign: TextAlign.justify,
+              style: const TextStyle(
+                  fontSize: 15,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF404952)),
+            ),
+          ]),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (dataFiltered.isEmpty) {
+      return const Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(
+                height: 60,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    Data injuryInfo = dataFiltered.first;
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -128,7 +180,7 @@ class InjuryDetailState extends State<InjuryDetail> {
                 children: [
                   Image.asset(
                     'assets/images/displasia_fibrosa.jpg',
-                    height: 200,
+                    height: 230,
                     width: double.infinity,
                     fit: BoxFit.fill,
                   ),
@@ -150,109 +202,24 @@ class InjuryDetailState extends State<InjuryDetail> {
                 ],
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.all(16),
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  child: const Text(
-                      "testasdqwasdqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqe"),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    customTextContainer("Descrição", injuryInfo.description),
+                    customTextContainer(
+                        "Características Clínicas", injuryInfo.clinicalCharacs),
+                    customTextContainer("Características Radiográficas",
+                        injuryInfo.radiographicalCharacs),
+                    customTextContainer("Características Histopatológicas",
+                        injuryInfo.histopathological),
+                    customTextContainer("Tratamento", injuryInfo.treatment),
+                  ],
                 ),
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  child: Text("teste"),
-                ),
-              ],
+              ),
             ),
           ]),
     );
   }
 }
-
-// if (dataFiltered.length == 0) {
-//   return const Scaffold(
-//     body: Center(
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         crossAxisAlignment: CrossAxisAlignment.center,
-//         children: [
-//           CircularProgressIndicator(),
-//           SizedBox(
-//             height: 60,
-//           ),
-//         ],
-//       ),
-//     ),
-//   );
-//   //return const CircularProgressIndicator();
-// }
-
-// Text CustomSectionTitle(String textToDisplay) {
-//   return Text(
-//     textToDisplay,
-//     textAlign: TextAlign.center,
-//     style: TextStyle(fontWeight: FontWeight.bold),
-//   );
-// }
-
-// Text CustomContent(String textToDisplay) {
-//   return Text(
-//     textToDisplay,
-//     textAlign: TextAlign.justify,
-//   );
-// }
-
-// Data data = dataFiltered.first;
-// return Scaffold(
-//     appBar: AppBar(
-//       backgroundColor: Colors.blueGrey,
-//       title: Center(
-//           child: Text(widget.parentName, textAlign: TextAlign.center)),
-//     ),
-//     body: SingleChildScrollView(
-//       child: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             const SizedBox(height: 10),
-//             CustomSectionTitle("Descrição"),
-//             const SizedBox(height: 10),
-//             CustomContent(data.description),
-//             const SizedBox(height: 10),
-//             CustomSectionTitle("Características Clínicas"),
-//             const SizedBox(height: 10),
-//             CustomContent(data.clinicalCharacs),
-//             const SizedBox(height: 10),
-//             CustomSectionTitle("Características Radiográficas"),
-//             const SizedBox(height: 10),
-//             CustomContent(data.radiographicalCharacs),
-//             const SizedBox(height: 10),
-//             CustomSectionTitle("Características Histopatológicas"),
-//             const SizedBox(height: 10),
-//             CustomContent(data.histopathological),
-//             const SizedBox(height: 10),
-//             CustomSectionTitle("Tratamento"),
-//             const SizedBox(height: 10),
-//             CustomContent(data.treatment),
-//             const SizedBox(height: 10),
-//             CustomSectionTitle("Lâmina (clique para ampliar)"),
-//             const SizedBox(height: 10),
-//             if (data.imageName.isNotEmpty)
-//               GestureDetector(
-//                 onTap: () {
-//                   Navigator.of(context).push(MaterialPageRoute(
-//                       builder: (BuildContext context) => WebSlideView(
-//                             title: widget.parentName,
-//                             selectedUrl: data.url,
-//                           )));
-//                 },
-//                 child: Image.asset('assets/images/${data.imageName}'),
-//               ),
-//           ],
-//         ),
-//       ),
-//     ));
