@@ -5,27 +5,34 @@ class SearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const TextField(
-      cursorColor: Colors.white,
-      style: TextStyle(
-          fontSize: 16,
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.w500,
-          color: Color(0xFFFFFFFF)),
-      decoration: InputDecoration(
-          filled: true,
-          fillColor: Color(0xFF9C3C81),
-          prefixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(),
-          hintText: 'Pesquisar',
-          hintStyle: TextStyle(
-              fontSize: 16,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w500,
-              color: Color(0xFFFFFFFF)),
-          focusColor: Color(0xFFFFFFFF),
-          prefixIconColor: Colors.white,
-          hoverColor: Color(0xFF9C3C81)),
+    return SizedBox(
+      width: 300,
+      height: 45,
+      child: TextField(
+        maxLines: 1,
+        textAlignVertical: TextAlignVertical.bottom,
+        cursorColor: Colors.white,
+        style: const TextStyle(
+            fontSize: 16,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w500,
+            color: Color(0xFFFFFFFF)),
+        decoration: InputDecoration(
+            filled: true,
+            fillColor: const Color(0xFF9C3C81),
+            prefixIcon: const Icon(Icons.search),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+            hintText: 'Pesquisar',
+            hintStyle: const TextStyle(
+                fontSize: 16,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w500,
+                color: Color(0xFFFFFFFF)),
+            focusColor: const Color(0xFFFFFFFF),
+            prefixIconColor: Colors.white,
+            hoverColor: const Color(0xFF9C3C81)),
+      ),
     );
   }
 }

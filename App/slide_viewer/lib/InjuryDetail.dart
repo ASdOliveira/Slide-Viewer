@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'Components/DrawerWidget.dart';
 import 'Components/H1TextWidget.dart';
 import 'Components/InjuryDetailTextContainer.dart';
 import 'Components/SearchWidget.dart';
@@ -103,10 +104,10 @@ class InjuryDetailState extends State<InjuryDetail> {
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF672855),
         title: const SearchWidget(),
       ),
+      drawer: DrawerWidget(),
       backgroundColor: const Color(0xFFEAEFF3),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,

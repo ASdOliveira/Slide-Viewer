@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:slide_viewer/Components/DrawerWidget.dart';
 import 'Components/H1TextWidget.dart';
 import 'Components/H2TextWidget.dart';
 import 'Components/SearchWidget.dart';
@@ -64,10 +65,10 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          automaticallyImplyLeading: false,
           backgroundColor: const Color(0xFF672855),
           title: const SearchWidget()),
       backgroundColor: const Color(0xFFEAEFF3),
+      drawer: DrawerWidget(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
