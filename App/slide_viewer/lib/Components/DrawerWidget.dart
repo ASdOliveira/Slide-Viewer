@@ -23,8 +23,8 @@ class DrawerWidget extends StatelessWidget {
                 style: subTitle3TextStyle(),
               ),
               onTap: () {
-                Navigator.pop(context);
-                Navigator.of(context).push(
+                //Navigator.pop(context);
+                Navigator.push(context,
                     MaterialPageRoute(builder: (context) => InjuriesGroup()));
               },
             ),

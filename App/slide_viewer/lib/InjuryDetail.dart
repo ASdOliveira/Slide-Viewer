@@ -51,7 +51,7 @@ class InjuryDetailState extends State<InjuryDetail> {
               child: Stack(
                 children: [
                   Image.asset(
-                    'assets/images/displasia_fibrosa.jpg',
+                    'assets/images/default_image.jpg',
                     height: 230,
                     width: double.infinity,
                     fit: BoxFit.fill,
@@ -67,7 +67,7 @@ class InjuryDetailState extends State<InjuryDetail> {
                         },
                         color: const Color(0xFF672855),
                         icon: const Icon(Icons.zoom_out_map),
-                        iconSize: 35,
+                        iconSize: 30,
                       ),
                     ),
                   )
