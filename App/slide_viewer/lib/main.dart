@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Services/InjuriesGroupService.dart';
 import 'Services/InjuryDetailService.dart';
-import 'injuriesGroup.dart';
+import 'Components/SplashScreenWidget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +16,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: InjuriesGroup());
+    return const MaterialApp(home: SplashScreenWidget());
   }
 }
