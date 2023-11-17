@@ -31,3 +31,11 @@ TextStyle bodyTextStyle() {
       fontWeight: FontWeight.w400,
       color: Color(0xFF404952));
 }
+
+TextStyle searchButtonTextStyle() {
+  return const TextStyle(
+      fontSize: 16,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w500,
+      color: Color(0xFFFFFFFF));
+}

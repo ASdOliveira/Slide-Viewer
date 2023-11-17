@@ -4,6 +4,8 @@ import 'package:slide_viewer/InjuryDetail.dart';
 import 'package:slide_viewer/Services/InjuryDetailService.dart';
 import 'package:slide_viewer/Services/Models/InjuryDetailModel.dart';
 
+import '../Style/CustomTextStyle.dart';
+
 class SearchWidget extends StatelessWidget {
   const SearchWidget({super.key});
 
@@ -16,12 +18,7 @@ class SearchWidget extends StatelessWidget {
         minCharsForSuggestions: 1,
         textFieldConfiguration: TextFieldConfiguration(
           textAlignVertical: TextAlignVertical.bottom,
-          style: const TextStyle(
-            fontSize: 16,
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w500,
-            color: Color(0xFFFFFFFF),
-          ),
+          style: searchButtonTextStyle(),
           decoration: InputDecoration(
             filled: true,
             fillColor: const Color(0xFF9C3C81),
@@ -35,11 +32,7 @@ class SearchWidget extends StatelessWidget {
             hintText: 'Pesquisar',
             hintMaxLines: 1,
             hoverColor: const Color(0xFF9C3C81),
-            hintStyle: const TextStyle(
-                fontSize: 16,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w500,
-                color: Color(0xFFFFFFFF)),
+            hintStyle: searchButtonTextStyle(),
           ),
         ),
         suggestionsCallback: (pattern) async {
@@ -54,11 +47,7 @@ class SearchWidget extends StatelessWidget {
           return ListTile(
             title: Text(
               suggestion.label,
-              style: const TextStyle(
-                  fontSize: 14,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xFF9C3C81)),
+              style: H2TextStyle(14),
             ),
           );
         },
@@ -77,31 +66,3 @@ class SearchWidget extends StatelessWidget {
     );
   }
 }
-      // child: TextField(
-      //   maxLines: 1,
-      //   textAlignVertical: TextAlignVertical.bottom,
-      //   cursorColor: Colors.white,
-      //   style: const TextStyle(
-      //       fontSize: 16,
-      //       fontFamily: 'Poppins',
-      //       fontWeight: FontWeight.w500,
-      //       color: Color(0xFFFFFFFF)),
-      //   decoration: InputDecoration(
-      //       filled: true,
-      //       fillColor: const Color(0xFF9C3C81),
-      //       prefixIcon: const Icon(Icons.search),
-      //       border:
-      //           OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
-      //       hintText: 'Pesquisar',
-      //       hintStyle: const TextStyle(
-      //           fontSize: 16,
-      //           fontFamily: 'Poppins',
-      //           fontWeight: FontWeight.w500,
-      //           color: Color(0xFFFFFFFF)),
-      //       focusColor: const Color(0xFFFFFFFF),
-      //       prefixIconColor: Colors.white,
-      //       hoverColor: const Color(0xFF9C3C81)),
-      // ),
-    //);
-  //}
-//}
