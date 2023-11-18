@@ -6,6 +6,7 @@ import 'Components/H1TextWidget.dart';
 import 'Components/InjuryDetailTextContainer.dart';
 import 'Components/SearchWidget.dart';
 import 'WebSlideView.dart';
+import 'Services/InternetCheckerService.dart';
 
 class InjuryDetail extends StatefulWidget {
   final int Id;
@@ -63,7 +64,30 @@ class InjuryDetailState extends State<InjuryDetail> {
                       color: const Color(0xFFEAECF3),
                       child: IconButton(
                         onPressed: () {
-                          //Add action to open the Image
+                          if (injuryModel.url.isNotEmpty) {
+                            InternetCheckerService()
+                                .hasInternetConnection()
+                                .then((hasConnection) {
+                              if (hasConnection) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => WebSlideView(
+                                              selectedUrl: injuryModel.url,
+                                              title: injuryModel.label,
+                                            )));
+                              } else {
+                                // Fluttertoast.showToast(
+                                //     msg: "This is Center Short Toast",
+                                //     toastLength: Toast.LENGTH_SHORT,
+                                //     gravity: ToastGravity.CENTER,
+                                //     timeInSecForIosWeb: 1,
+                                //     backgroundColor: Colors.red,
+                                //     textColor: Colors.white,
+                                //     fontSize: 16.0);
+                              }
+                            });
+                          }
                         },
                         color: const Color(0xFF672855),
                         icon: const Icon(Icons.zoom_out_map),
