@@ -11,6 +11,7 @@ class WebSlideView extends StatelessWidget {
       Completer<WebViewController>();
 
   WebSlideView({
+    super.key,
     required this.title,
     required this.selectedUrl,
   });
@@ -18,15 +19,17 @@ class WebSlideView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.blueGrey,
-            title: Center(child: Text(title, textAlign: TextAlign.center))),
+        // appBar: AppBar(
+        //   backgroundColor: const Color(0xFF672855),
+        //   title: Center(child: Text(title, textAlign: TextAlign.center)),
+        //   toolbarHeight: 50,
+        // ),
         body: WebView(
-          initialUrl: selectedUrl,
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController webViewController) {
-            _controller.complete(webViewController);
-          },
-        ));
+      initialUrl: selectedUrl,
+      javascriptMode: JavascriptMode.unrestricted,
+      onWebViewCreated: (WebViewController webViewController) {
+        _controller.complete(webViewController);
+      },
+    ));
   }
 }
