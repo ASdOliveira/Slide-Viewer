@@ -5,6 +5,7 @@ import 'Components/DrawerWidget.dart';
 import 'Components/H1TextWidget.dart';
 import 'Components/InjuryDetailTextContainer.dart';
 import 'Components/SearchWidget.dart';
+import 'Style/CustomTextStyle.dart';
 import 'WebSlideView.dart';
 import 'Services/InternetCheckerService.dart';
 
@@ -77,14 +78,18 @@ class InjuryDetailState extends State<InjuryDetail> {
                                               title: injuryModel.label,
                                             )));
                               } else {
-                                // Fluttertoast.showToast(
-                                //     msg: "This is Center Short Toast",
-                                //     toastLength: Toast.LENGTH_SHORT,
-                                //     gravity: ToastGravity.CENTER,
-                                //     timeInSecForIosWeb: 1,
-                                //     backgroundColor: Colors.red,
-                                //     textColor: Colors.white,
-                                //     fontSize: 16.0);
+                                var snackBar = SnackBar(
+                                  content: Text(
+                                    "Para ver em detalhes, é necessário conexão com a internet",
+                                    style: subTitle3TextStyle(),
+                                  ),
+                                  duration: const Duration(seconds: 4),
+                                  showCloseIcon: true,
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 128, 77, 113),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
                               }
                             });
                           }
