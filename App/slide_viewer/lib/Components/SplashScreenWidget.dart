@@ -12,8 +12,12 @@ class SplashScreenWidget extends StatelessWidget {
         title: 'Clean Code',
         home: AnimatedSplashScreen(
             duration: 2500,
-            splash: Container(
-                child: Image.asset('assets/images/default_image.jpg')),
+            splashIconSize: 500,
+            splash: Image.asset(
+              'assets/images/logo.jpg',
+              height: 200,
+              width: 205,
+            ),
             nextScreen: InjuriesGroup(),
             splashTransition: SplashTransition.fadeTransition,
             animationDuration: Duration(seconds: 2),
