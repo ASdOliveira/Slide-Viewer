@@ -20,7 +20,7 @@ class SplashScreenWidget extends StatelessWidget {
             ),
             nextScreen: InjuriesGroup(),
             splashTransition: SplashTransition.fadeTransition,
-            animationDuration: Duration(seconds: 2),
-            backgroundColor: Color.fromARGB(255, 149, 48, 121)));
+            animationDuration: const Duration(seconds: 2),
+            backgroundColor: const Color(0xFF672855)));
   }
 }
