@@ -8,6 +8,14 @@ TextStyle H1TextStyle() {
       color: Color(0xFF672855));
 }
 
+TextStyle H1WhiteTextStyle() {
+  return const TextStyle(
+      fontSize: 24,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w500,
+      color: Color(0xFFFFFFFF));
+}
+
 TextStyle H2TextStyle(double fontSize) {
   return TextStyle(
       fontSize: fontSize,

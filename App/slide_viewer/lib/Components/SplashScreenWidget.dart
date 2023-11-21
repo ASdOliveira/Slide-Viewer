@@ -14,7 +14,7 @@ class SplashScreenWidget extends StatelessWidget {
             duration: 2500,
             splashIconSize: 500,
             splash: Image.asset(
-              'assets/images/logo.jpg',
+              'assets/images/logo.png',
               height: 200,
               width: 205,
             ),

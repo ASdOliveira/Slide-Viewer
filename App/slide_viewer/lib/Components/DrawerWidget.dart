@@ -14,9 +14,21 @@ class DrawerWidget extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              child: Text('Drawer Header'),
-            ),
+            DrawerHeader(
+                child: Row(
+              children: [
+                Image.asset(
+                  'assets/images/logo.png',
+                  height: 70,
+                  width: 75,
+                ),
+                const SizedBox(width: 20),
+                Text(
+                  "Nome do App",
+                  style: H1WhiteTextStyle(),
+                )
+              ],
+            )),
             ListTile(
               title: Text(
                 'Grupo de Lesões',
