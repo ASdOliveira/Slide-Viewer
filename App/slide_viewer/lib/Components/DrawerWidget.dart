@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slide_viewer/AboutPage.dart';
 import 'package:slide_viewer/injuriesGroup.dart';
 
 import '../Style/CustomTextStyle.dart';
@@ -35,7 +36,6 @@ class DrawerWidget extends StatelessWidget {
                 style: subTitle3TextStyle(),
               ),
               onTap: () {
-                //Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => InjuriesGroup()));
               },
@@ -55,7 +55,8 @@ class DrawerWidget extends StatelessWidget {
                 style: subTitle3TextStyle(),
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutPage()));
               },
             ),
           ],
