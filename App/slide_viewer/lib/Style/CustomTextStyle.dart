@@ -10,7 +10,7 @@ TextStyle H1TextStyle() {
 
 TextStyle H1WhiteTextStyle() {
   return const TextStyle(
-      fontSize: 24,
+      fontSize: 16,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
       color: Color(0xFFFFFFFF));

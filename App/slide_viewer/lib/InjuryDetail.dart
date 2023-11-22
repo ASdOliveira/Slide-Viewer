@@ -4,6 +4,7 @@ import 'package:slide_viewer/Services/Models/InjuryDetailModel.dart';
 import 'Components/DrawerWidget.dart';
 import 'Components/H1TextWidget.dart';
 import 'Components/InjuryDetailTextContainer.dart';
+import 'Components/InjuryImageDetailWidget.dart';
 import 'Components/SearchWidget.dart';
 import 'Style/CustomTextStyle.dart';
 import 'WebSlideView.dart';
@@ -52,12 +53,7 @@ class InjuryDetailState extends State<InjuryDetail> {
               alignment: Alignment.center,
               child: Stack(
                 children: [
-                  Image.asset(
-                    'assets/images/default_image.jpg',
-                    height: 230,
-                    width: double.infinity,
-                    fit: BoxFit.fill,
-                  ),
+                  InjuryImageDetailWidget(imageName: injuryModel.imageName),
                   Positioned(
                     bottom: 10,
                     right: 10,

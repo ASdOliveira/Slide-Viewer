@@ -22,9 +22,9 @@ class DrawerWidget extends StatelessWidget {
                   height: 70,
                   width: 75,
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 15),
                 Text(
-                  "Nome do App",
+                  "Guia de Patologia Oral",
                   style: H1WhiteTextStyle(),
                 )
               ],
