@@ -1,148 +1,127 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:slide_viewer/Services/InjuryDetailService.dart';
+import 'package:slide_viewer/Services/Models/InjuryDetailModel.dart';
+import 'Components/DrawerWidget.dart';
+import 'Components/H1TextWidget.dart';
+import 'Components/InjuryDetailTextContainer.dart';
+import 'Components/InjuryImageDetailWidget.dart';
+import 'Components/SearchWidget.dart';
+import 'Style/CustomTextStyle.dart';
 import 'WebSlideView.dart';
-
-class Data {
-  final int parent;
-  final String description;
-  final String clinicalCharacs;
-  final String radiographicalCharacs;
-  final String histopathological;
-  final String treatment;
-  final String imageName;
-  final String url;
-
-  Data(
-      {required this.parent,
-      required this.description,
-      required this.clinicalCharacs,
-      required this.radiographicalCharacs,
-      required this.histopathological,
-      required this.treatment,
-      required this.imageName,
-      required this.url});
-
-  factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(
-        parent: json['parent'],
-        description: json['description'],
-        clinicalCharacs: json['clinicalCharacs'],
-        radiographicalCharacs: json['radiographicalCharacs'],
-        histopathological: json['histopathological'],
-        treatment: json['treatment'],
-        imageName: json['imageName'],
-        url: json['url']);
-  }
-}
+import 'Services/InternetCheckerService.dart';
 
 class InjuryDetail extends StatefulWidget {
-  final int parentId;
-  final String parentName;
+  final int Id;
 
-  const InjuryDetail(
-      {super.key, required this.parentId, required this.parentName});
+  const InjuryDetail({super.key, required this.Id});
 
   @override
   InjuryDetailState createState() => InjuryDetailState();
 }
 
 class InjuryDetailState extends State<InjuryDetail> {
-  List<Data> data = [];
-  List<Data> dataFiltered = [];
-  bool isError = false;
+  late InjuryDetailModel injuryModel;
 
   InjuryDetailState();
 
   @override
   void initState() {
     super.initState();
-    loadJsonData();
-  }
-
-  Future<void> loadJsonData() async {
-    try {
-      String jsonContent = await DefaultAssetBundle.of(context)
-          .loadString('assets/patologiesDetails.json');
-
-      List<dynamic> jsonData = json.decode(jsonContent);
-      setState(() {
-        data = jsonData.map((item) => Data.fromJson(item)).toList();
-        dataFiltered =
-            data.where((item) => item.parent == widget.parentId).toList();
-        isError = dataFiltered.isEmpty;
-      });
-    } catch (e) {
-      print(e);
-      isError = true;
-    }
+    injuryModel = InjuryDetailService().getListFilteredById(widget.Id);
   }
 
   @override
   Widget build(BuildContext context) {
-    if (dataFiltered.length == 0) {
-      return const CircularProgressIndicator();
-    }
-
-    Text CustomSectionTitle(String textToDisplay) {
-      return Text(
-        textToDisplay,
-        textAlign: TextAlign.center,
-        style: TextStyle(fontWeight: FontWeight.bold),
-      );
-    }
-
-    Text CustomContent(String textToDisplay) {
-      return Text(textToDisplay, textAlign: TextAlign.justify);
-    }
-
-    Data data = dataFiltered.first;
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
-          title: Center(
-              child: Text(widget.parentName, textAlign: TextAlign.center)),
-        ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 10),
-                CustomSectionTitle("Descrição"),
-                const SizedBox(height: 10),
-                CustomContent(data.description),
-                const SizedBox(height: 10),
-                CustomSectionTitle("Características Clínicas"),
-                const SizedBox(height: 10),
-                CustomContent(data.clinicalCharacs),
-                const SizedBox(height: 10),
-                CustomSectionTitle("Características Radiográficas"),
-                const SizedBox(height: 10),
-                CustomContent(data.radiographicalCharacs),
-                const SizedBox(height: 10),
-                CustomSectionTitle("Histopatológico"),
-                const SizedBox(height: 10),
-                CustomContent(data.histopathological),
-                const SizedBox(height: 10),
-                CustomSectionTitle("Tratamento"),
-                const SizedBox(height: 10),
-                CustomContent(data.treatment),
-                const SizedBox(height: 10),
-                CustomSectionTitle("Lâmina (clique para ampliar)"),
-                const SizedBox(height: 10),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => WebSlideView(
-                              title: widget.parentName,
-                              selectedUrl: data.url,
-                            )));
-                  },
-                  child: Image.asset('assets/images/${data.imageName}'),
-                ),
-              ],
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF672855),
+        title: const SearchWidget(),
+      ),
+      drawer: DrawerWidget(),
+      backgroundColor: const Color(0xFFEAEFF3),
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 15, 0, 15),
+              child: H1TextWidget(
+                text: injuryModel.label,
+              ),
             ),
-          ),
-        ));
+            Container(
+              alignment: Alignment.center,
+              child: Stack(
+                children: [
+                  InjuryImageDetailWidget(imageName: injuryModel.imageName),
+                  Positioned(
+                    bottom: 10,
+                    right: 10,
+                    child: Container(
+                      color: const Color(0xFFEAECF3),
+                      child: IconButton(
+                        onPressed: () {
+                          if (injuryModel.url.isNotEmpty) {
+                            InternetCheckerService()
+                                .hasInternetConnection()
+                                .then((hasConnection) {
+                              if (hasConnection) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => WebSlideView(
+                                              selectedUrl: injuryModel.url,
+                                              title: injuryModel.label,
+                                            )));
+                              } else {
+                                var snackBar = SnackBar(
+                                  content: Text(
+                                    "Para ver em detalhes, é necessário conexão com a internet",
+                                    style: subTitle3TextStyle(),
+                                  ),
+                                  duration: const Duration(seconds: 4),
+                                  showCloseIcon: true,
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 128, 77, 113),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
+                            });
+                          }
+                        },
+                        color: const Color(0xFF672855),
+                        icon: const Icon(Icons.zoom_out_map),
+                        iconSize: 30,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InjuryDetailTextContainer(
+                        title: "Descrição", body: injuryModel.description),
+                    InjuryDetailTextContainer(
+                        title: "Características Clínicas",
+                        body: injuryModel.clinicalCharacs),
+                    InjuryDetailTextContainer(
+                        title: "Características Radiográficas",
+                        body: injuryModel.radiographicalCharacs),
+                    InjuryDetailTextContainer(
+                        title: "Características Histopatológicas",
+                        body: injuryModel.histopathological),
+                    InjuryDetailTextContainer(
+                        title: "Tratamento", body: injuryModel.treatment),
+                  ],
+                ),
+              ),
+            ),
+          ]),
+    );
   }
 }

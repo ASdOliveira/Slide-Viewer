@@ -1,20 +1,13 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:slide_viewer/Components/DrawerWidget.dart';
+
 import 'package:slide_viewer/injuriesSubGroup.dart';
-
-class ButtonData {
-  final int id;
-  final String label;
-
-  ButtonData({required this.id, required this.label});
-
-  factory ButtonData.fromJson(Map<String, dynamic> json) {
-    return ButtonData(
-      id: json['id'],
-      label: json['label'],
-    );
-  }
-}
+import 'Components/H1TextWidget.dart';
+import 'Components/H2TextWidget.dart';
+import 'Components/SearchWidget.dart';
+import 'Style/CustomButtonStyle.dart';
+import 'Services/InjuriesGroupService.dart';
+import 'Services/Models/InjuriesGroupModel.dart';
 
 class InjuriesGroup extends StatefulWidget {
   const InjuriesGroup({super.key});
@@ -24,26 +17,11 @@ class InjuriesGroup extends StatefulWidget {
 }
 
 class InjuriesGroupState extends State<InjuriesGroup> {
-  List<ButtonData> buttons = [];
+  List<InjuriesGroupModel> buttons = InjuriesGroupService().getList();
 
   @override
   void initState() {
     super.initState();
-    loadButtonData();
-  }
-
-  Future<void> loadButtonData() async {
-    try {
-      String jsonContent = await DefaultAssetBundle.of(context)
-          .loadString('assets/patologies.json');
-
-      List<dynamic> jsonData = json.decode(jsonContent);
-      setState(() {
-        buttons = jsonData.map((item) => ButtonData.fromJson(item)).toList();
-      });
-    } catch (e) {
-      print(e);
-    }
   }
 
   @override
@@ -51,34 +29,56 @@ class InjuriesGroupState extends State<InjuriesGroup> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
-          title: const Center(
-              child: Text('Grupo de lesões', textAlign: TextAlign.center)),
-        ),
-        body: ListView.builder(
-          itemCount: buttons.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(25),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueGrey, // Background color
-                ),
-                onPressed: () {
-                  // print(
-                  //     'Botão ${buttons[index].id} pressionado! Label: ${buttons[index].label}');
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => InjuriesSubGroup(
-                            parentId: buttons[index].id,
-                            parentName: buttons[index].label)),
-                  );
-                },
-                child: Text(buttons[index].label),
+            backgroundColor: const Color(0xFF672855),
+            title: const SearchWidget()),
+        backgroundColor: const Color(0xFFEAEFF3),
+        drawer: DrawerWidget(),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(35.0),
+              child: H1TextWidget(
+                text: "Grupo de Lesões",
               ),
-            );
-          },
+            ),
+            Expanded(
+              child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 16,
+                      childAspectRatio: 1.3),
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                  scrollDirection: Axis.vertical,
+                  itemCount: buttons.length,
+                  itemBuilder: (context, index) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => InjuriesSubGroup(
+                                  parentId: buttons[index].id,
+                                  parentName: buttons[index].label),
+                              transitionDuration:
+                                  const Duration(milliseconds: 200),
+                              transitionsBuilder: (_, a, __, c) =>
+                                  FadeTransition(opacity: a, child: c)),
+                        );
+                      },
+                      style: customButtonStyle(),
+                      child: H2TextWidget(
+                        text: buttons[index].label,
+                        fontSize: 15,
+                      ),
+                    );
+                  }),
+            ),
+          ],
         ),
       ),
     );
