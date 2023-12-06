@@ -1,7 +1,11 @@
 [
   {
+    "id": 1,
+    "label": "Lesões Potencialmente Malignas"
+  },
+  {
     "id": 2,
-    "label": "Lesões das Glândulas Salivares"
+    "label": "Patologia das Glândulas Salivares"
   },
   {
     "id": 3,
