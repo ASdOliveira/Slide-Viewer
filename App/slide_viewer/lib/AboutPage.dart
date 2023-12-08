@@ -24,12 +24,12 @@ class AboutPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 H1TextWidget(text: "Sobre o aplicativo"),
-                const SizedBox(height: 16),
+                const SizedBox(height: 18),
                 BodyTextWidget(
                     text: "O aplicativo foi desenvolvido para acadêmicos"
                         " da área de odontologia com o objetivo de auxiliar no aprendizado"
                         " sobre o diagnóstico das principais patologias orais."),
-                const SizedBox(height: 16),
+                const SizedBox(height: 18),
                 H2TextWidget(
                   text: "Colaboradores",
                   fontSize: 18,
@@ -42,11 +42,22 @@ class AboutPage extends StatelessWidget {
                         "Cirurgiã-dentista e Mestranda pela Universidade Federal de Pernambuco\n\n"
                         "MsC. Arysson Silva de Oliveira – Desenvolvedor de Software e Engenheiro Eletrônico\n\n"
                         "Jayne Silva de Oliveira – Design e Mestranda pela Universidade Federal de Pernambuco"),
-                const SizedBox(height: 16),
+                const SizedBox(height: 18),
                 H2TextWidget(
                   text: "Bibliografia",
                   fontSize: 18,
                 ),
+                const SizedBox(height: 18),
+                BodyTextWidget(
+                    text:
+                        "NEVILLE, Brad. Patologia oral e maxilofacial. 4 ed. Rio de Janeiro: Elsevier, 2016, 912 ISBN: 978-85-352-6564-4."),
+                const SizedBox(height: 18),
+                H2TextWidget(
+                  text: "Contato",
+                  fontSize: 18,
+                ),
+                const SizedBox(height: 18),
+                BodyTextWidget(text: "fernanda.delfino@ufpe.br"),
               ],
             ),
           ),

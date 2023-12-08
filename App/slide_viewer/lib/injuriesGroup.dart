@@ -39,7 +39,7 @@ class InjuriesGroupState extends State<InjuriesGroup> {
           const Padding(
             padding: EdgeInsets.all(35.0),
             child: H1TextWidget(
-              text: "Grupo de Lesões",
+              text: "Grupos de Lesões",
             ),
           ),
           Expanded(

@@ -88,6 +88,19 @@ class InjuryDetailState extends State<InjuryDetail> {
                                     .showSnackBar(snackBar);
                               }
                             });
+                          } else {
+                            var snackBar = SnackBar(
+                              content: Text(
+                                "Não é possível ver imagem em detalhes",
+                                style: subTitle3TextStyle(),
+                              ),
+                              duration: const Duration(seconds: 2),
+                              showCloseIcon: true,
+                              backgroundColor:
+                                  const Color.fromARGB(255, 128, 77, 113),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
                           }
                         },
                         color: const Color(0xFF672855),

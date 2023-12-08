@@ -32,7 +32,7 @@ class DrawerWidget extends StatelessWidget {
             )),
             ListTile(
               title: Text(
-                'Grupo de Lesões',
+                'Grupos de Lesões',
                 style: subTitle3TextStyle(),
               ),
               onTap: () {
@@ -47,6 +47,17 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.pop(context);
+
+                var snackBar = SnackBar(
+                  content: Text(
+                    "Essa funcionalidades estará disponível em atualizações futuras",
+                    style: subTitle3TextStyle(),
+                  ),
+                  duration: const Duration(seconds: 2),
+                  showCloseIcon: true,
+                  backgroundColor: const Color.fromARGB(255, 128, 77, 113),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
               },
             ),
             ListTile(
