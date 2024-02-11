@@ -6,9 +6,6 @@ import 'Components/H1TextWidget.dart';
 import 'Components/InjuryDetailTextContainer.dart';
 import 'Components/InjuryImageDetailWidget.dart';
 import 'Components/SearchWidget.dart';
-import 'Style/CustomTextStyle.dart';
-import 'WebSlideView.dart';
-import 'Services/InternetCheckerService.dart';
 
 class InjuryDetail extends StatefulWidget {
   final int Id;
@@ -51,30 +48,8 @@ class InjuryDetailState extends State<InjuryDetail> {
             ),
             Container(
               alignment: Alignment.center,
-              child: GestureDetector(
-                onDoubleTap: () {
-                  ShowImageAccordingInternetConnection(context);
-                },
-                child: Stack(
-                  children: [
-                    InjuryImageDetailWidget(imageName: injuryModel.imageName),
-                    Positioned(
-                      bottom: 10,
-                      right: 10,
-                      child: Container(
-                        color: const Color(0xFFEAECF3),
-                        child: IconButton(
-                          onPressed: () {
-                            ShowImageAccordingInternetConnection(context);
-                          },
-                          color: const Color(0xFF672855),
-                          icon: const Icon(Icons.zoom_out_map),
-                          iconSize: 30,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+              child: InjuryImageDetailWidget(
+                injuryModel: injuryModel,
               ),
             ),
             Expanded(
@@ -101,43 +76,5 @@ class InjuryDetailState extends State<InjuryDetail> {
             ),
           ]),
     );
-  }
-
-  void ShowImageAccordingInternetConnection(BuildContext context) {
-    if (injuryModel.url.isNotEmpty) {
-      InternetCheckerService().hasInternetConnection().then((hasConnection) {
-        if (hasConnection) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => WebSlideView(
-                        selectedUrl: injuryModel.url,
-                        title: injuryModel.label,
-                      )));
-        } else {
-          var snackBar = SnackBar(
-            content: Text(
-              "Para ver em detalhes, é necessário conexão com a internet",
-              style: subTitle3TextStyle(),
-            ),
-            duration: const Duration(seconds: 4),
-            showCloseIcon: true,
-            backgroundColor: const Color.fromARGB(255, 128, 77, 113),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        }
-      });
-    } else {
-      var snackBar = SnackBar(
-        content: Text(
-          "Não é possível ver imagem em detalhes",
-          style: subTitle3TextStyle(),
-        ),
-        duration: const Duration(seconds: 2),
-        showCloseIcon: true,
-        backgroundColor: const Color.fromARGB(255, 128, 77, 113),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
   }
 }

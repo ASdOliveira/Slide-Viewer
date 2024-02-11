@@ -9,6 +9,7 @@
       "histopathological": "Se apresenta como uma área de mucina extravasada, circundada por tecido de granulação reacional, podendo apresentar também um infiltrado inflamatório crônico.",
       "treatment": "Alguns casos se rompem e cicatrizam sozinhas. Em outros casos, é necessário a excisão cirúrgica.",
       "imageName": "Mucocele.jpg",
+      "extraImages": [],
       "url": "https://slideviewer.com.br/Mucocele.mrxs"
     },
     {
@@ -21,6 +22,7 @@
       "histopathological": "A sialoadenite aguda, observa-se um acúmulo de neutrófilos dentro do sistema ductal e acinar. A sialoadenite crônica é caracterizada por infiltração difusa ou focal do parênquima glandular por linfócitos e plasmócitos. A atrofia dos ácinos é comum, bem como a dilatação ductal.",
       "treatment": "O tratamento da sialoadenite aguda inclui antibioticoterapia apropriada e a reidratação do paciente para estimular o fluxo salivar.\nO manejo da sialoadenite crônica varia de uma terapia conservadora até a intervenção cirúrgica. A conduta inicial geralmente inclui antibióticos, analgésicos, sialogogos e massagem glandular.",
       "imageName": "Sialoadenite.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Sialoadenite.mrxs"
     },
     {
@@ -33,6 +35,7 @@
       "histopathological": "As massas calcificadas exibem laminações concêntricas que podem circundar um ninho amorfo de debris. O ducto associado exibe metaplasia escamosa, oncocítica ou mucosa, também é evidente a inflamação periductal.",
       "treatment": "Nas glândulas salivares maiores, a ordenha do cálculo é o tratamento mais conservador, caso não seja possível, é realizado a remoção cirúrgica. Já no caso das glândulas salivares menores, a excisão cirúrgica é o tratamento de escolha.",
       "imageName": "Sialolito.jpg",
+      "extraImages":["sialolito-1.jpg","sialolito-2.jpg"],
       "url": "https://slideviewer.com.br/Sialolito.mrxs"   
     },
     {
@@ -45,6 +48,7 @@
       "histopathological": "Infiltração linfocítica nas glândulas salivares, com destruição das unidades acinares. As células ductais e as células mioepiteliais circundantes se tornam hiperplásicas, formando grupos característicos de células, chamada de ilhas epimioepiteliais",
       "treatment": "O principal tipo de tratamento é o de suporte. A secura ocular é tratada com lágrimas artificiais. Para a xerostomia é recomendado o uso de saliva artificial ou chicletes para estímulo da secreção salivar. Devido ao risco aumento de cárie é indicado a aplicação frequente de flúor.",
       "imageName": "Sindrome_de_Sjogren.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Sjogren.mrxs"        
     },
     {
@@ -57,6 +61,7 @@
       "histopathological": "Se apresenta como uma área de mucina extravasada, circundada por tecido de granulação reacional, podendo apresentar também um infiltrado inflamatório crônico.",
       "treatment": "Remoção da glândula sublingual e/ou marsupialização.",
       "imageName": "",
+      "extraImages":[],
       "url": ""     
     },
     {
@@ -69,6 +74,7 @@
       "histopathological": "É uma lesão delimitada e encapsulada por tecido conjuntivo fibroso, com parênquima composto de epitélio glandular e células mioepiteliais. As células mioepiteliais geralmente perfazem diferentes morfologias, podem ser encontradas áreas ductiformes, sólidas, mixóides, hialinas, plasmocitóides, osteóides, condroides e metaplasia escamosa.",
       "treatment": "Excisão cirúrgica com margem de segurança, pois a recidiva pode ocorrer se houver permanência de resíduos da lesão.",
       "imageName": "Adenoma_pleomorfico.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/adenoma_pleomorfico.mrxs"      
     },
     {
@@ -81,6 +87,7 @@
       "histopathological": "A congestão das vênulas resulta em necrose focal. Essa zona necrótica contém leucócitos polimorfonucleares e histiocitose. O tecido pulpar circundante normalmente exibe fibrose e uma mistura de plasmócitos, linfócitos e histiócitos.",
       "treatment": "Tratamento endodôntico convencional",
       "imageName": "Pulpite_irreversivel.jpg",
+      "extraImages":[],
       "url": ""     
     },
     {
@@ -93,6 +100,7 @@
       "histopathological": "Exibe hiperemia, edema e algumas células inflamatórias sob a área dos túbulos dentinários afetados. A dentina terciária pode ser observada na parede dentinária adjacente, ocasionalmente sendo encontradas células inflamatórias agudas dispersas.",
       "treatment": "Remoção do estímulo irritante local.",
       "imageName": "",
+      "extraImages":[],
       "url": ""    
     },
     {
@@ -105,6 +113,7 @@
       "histopathological": "Os abscessos consistem em muito leucócito polimorfonucleares frequentemente misturados com exsudato inflamatório, resíduo celular, material necrótico, colônias bacterianas ou histiócitos.",
       "treatment": "Dranagem e eliminação do foco de infecção.",
       "imageName": "",
+      "extraImages":[],
       "url": ""    
     },
     {
@@ -117,6 +126,7 @@
       "histopathological": "Tecido de granulação inflamado, circundado por uma parede de tecido conjuntivo fibroso. Apresenta um infiltrado linfocítico frequentemente misturado com neutrófilos, plasmócitos e histiócitos.",
       "treatment": "Tratamento endodôntico convencional com proservação ou exodontia com curetagem do tecido mole apical.",
       "imageName": "Granuloma_periapical.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Granuloma_periapical.mrxs"  
     },
     {
@@ -129,6 +139,7 @@
       "histopathological": "O cisto é revestido por epitélio escamoso estratificado, que pode demonstrar exocitose, espongiose ou hiperplasia. O lúmen do cisto pode ser preenchido por fluido e resíduos celulares, a parede do cisto consiste em tecido conjuntivo fibroso com infiltrado inflamatório.",
       "treatment": "Tratamento endodôntico convencional, com proservação. Em lesões maiores que 2 cm é indicado a realização associada da cirurgia paraendodôntica. Extração dentária está indicado para os casos onde não é possível reabilitar o dente.",
       "imageName": "Cisto_Radicular.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Cisto_Radicular.mrxs"  
     },
     {
@@ -141,6 +152,7 @@
       "histopathological": "Semelhante ao do cisto radicular. Ele é revestido por epitélio escamoso estratificado, que pode demonstra exocitose, espongiose ou hiperplasia. O lúmen do cisto pode ser preenchido por fluido e resíduos celulares, a parede do cisto consiste em tecido conjuntivo fibroso com infiltrado inflamatório.",
       "treatment": "Excisão cirúrgica.",
       "imageName": "",
+      "extraImages":[],
       "url": ""   
     },
     {
@@ -153,6 +165,7 @@
       "histopathological": "OSA: consiste em osso necrótico, que exibe uma perda de osteócitos de suas lacunas, reabsorção periférica e colonização bacteriana. Periferia do osso contêm resíduos necróticos e um infiltrado inflamatório agudo consistindo em leucócitos polimorfonucleares.\nOSC: Tecido conjuntivo fibroso crônico ou agudo preenchendo as áreas intertrabeculares do osso.",
       "treatment": "OSA: Antibioticoterapia e Intervenção cirúrgica.\nOSC: intervenção cirúrgica obrigatória e antibioticoterapia.",
       "imageName": "Osteomielite.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Osteomielite.mrxs"      
     },
     {
@@ -165,6 +178,7 @@
       "histopathological": "Hiperplasia do tecido conjuntivo, epitélio hiperparaqueratinizado e hiperplasia irregular das cristas epiteliais. Infiltrado inflamatório crônico está presente.",
       "treatment": "Remoção cirúrgica.",
       "imageName": "Hiperplasia_fibrosa_inflamatoria.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Hiperplasia_fibrosa_inflamatoria.mrxs"    
     },
     {
@@ -177,6 +191,7 @@
       "histopathological": "É uma proliferação altamente vascular, semelhante ao tecido de granulação, infiltrado inflamatório misto de neutrófilos, plasmócitos e linfócitos. Lesões antigas podem ter áreas com aparência mais fibrosa.",
       "treatment": "Remoção cirúrgica conservadora.",
       "imageName": "Granuloma_piogenico.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Granuloma_piogenico.mrxs"   
     },
     {
@@ -189,6 +204,7 @@
       "histopathological": "Proliferação de células gigantes multinucleadas, permeadas por células mesenquimais volumosas ovoides e fusiformes. As células gigantes podem conter somente poucos núcleos ou várias dúzias. Algumas dessas células podem apresentar núcleos grandes e vesiculosos, enquanto outras demonstram núcleos pequenos e picnóticos.",
       "treatment": "Excisão cirúrgica local.",
       "imageName": "Lesao_periferica_de_celulas_gigantes.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Lesao_periferica_celulas_gigantes.mrxs"  
     },
     {
@@ -201,6 +217,7 @@
       "histopathological": "É uma proliferação de fibroblastos associada à formação de material mineralizado. O componente fibroblástico profundo geralmente é celular, especialmente nas áreas de mineralização. O tipo de componente mineralizado é variável e pode consistir em osso, material cementóide ou calcificações distróficas",
       "treatment": "Excisão cirúrgica local.",
       "imageName": "Fibroma_ossificante_periferico.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/fibroma_ossificante_periferico.mrxs"  
     },
     {
@@ -213,6 +230,7 @@
       "histopathological": "Quando o cisto dentígero não encontra-se inflamado, pode ser observado um tecido conjuntivo fibroso da parede cística organizado frouxamente e contém substâncias compostas de glicosaminoglicanos. Pequenas ilhas ou cordões de restos epiteliais odontogênicos de aspecto inativo podem estar presentes na cápsula fibrosa.\nNo cisto dentígero inflamado a parede fibrosa da cavidade cística possui mais colágeno, apresentando uma variação de infiltrado de inflamatório crônico. A camada epitelial pode demonstrar quantidade variável de hiperplasia com o desenvolvimento de cristas epiteliais e características escamosas mais definidas.",
       "treatment": "Enucleação do cisto, juntamente com a extração do dente não erupcionado. Caso seja possível a erupção do dente, é removido apenas o cisto. O prognóstico é excelente e a recidiva é rara.",
       "imageName": "Cisto_Dentigero.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Cisto_dentigero.mrxs"  
     },
     {
@@ -225,6 +243,7 @@
       "histopathological": "Possui o epitélio oral de superfície na porção superior. A lâmina própria mostra infiltrado inflamatório variável. A porção profunda do espécime, mostra uma fina camada de epitélio pavimentoso não queratinizado.",
       "treatment": "Normalmente não requer tratamento, pois se rompe de forma espontânea. Quando isto não acontece, é feita a incisão no teto do cisto para acelerar o processo de erupção dentária.",
       "imageName": "",
+      "extraImages":[],
       "url": ""    
     },
     {
@@ -237,6 +256,7 @@
       "histopathological": "O revestimento cístico é composto por epitélio pavimentoso estratificado, que mostra uma superfície ortoqueratinizada de espessura variada. Apresenta grânulos de querato-hialinos na camada superficial do epitélio subjacente à ortoqueratina e revestimento epitelial delgado.",
       "treatment": "Enucleação e curetagem.",
       "imageName": "",
+      "extraImages":[],
       "url": ""    
     },
     {
@@ -249,6 +269,7 @@
       "histopathological": "Apresenta um revestimento epitelial delgado e achatado com superfície luminal paraqueratinizada.",
       "treatment": "Não é necessário nenhum tratamento pois as lesões regridem espontaneamente.",
       "imageName": "",
+      "extraImages":[],
       "url": ""   
     },
     {
@@ -261,6 +282,7 @@
       "histopathological": "Constituído por um revestimento epitelial delgado e achatado, com ou sem placas focais que contêm células claras, pequenos ninhos de células claras ricas em glicogênio, que representam restos de lâmina dentária.",
       "treatment": "Excisão cirúrgica.",
       "imageName": "",
+      "extraImages":[],
       "url": ""  
     },
     {
@@ -273,6 +295,7 @@
       "histopathological": "Apresenta uma cápsula fibrosa delgada, com um revestimento epitelial. Focos de células claras ricas em glicogênio podem estar espalhados entre as células do revestimento epitelial",
       "treatment": "Enucleação conservadora.",
       "imageName": "",
+      "extraImages":[],
       "url": ""  
     },
     {
@@ -285,6 +308,7 @@
       "histopathological": "O cisto é revestido por epitélio pavimentoso estratificado não queratinizado com áreas de hiperplasia com a presença de um infiltrado inflamatório crônico.",
       "treatment": "Enucleação. Não é necessário a remoção do dente associado.",
       "imageName": "",
+      "extraImages":[],
       "url": ""   
     },
     {
@@ -297,6 +321,7 @@
       "histopathological": "Uma lesão cística bem definida com uma cápsula fibrosa e epitélio odontogênico de revestimento. A característica principal são a presença de “células fantasma” dentro do componente epitelial.",
       "treatment": "Excisão cirúrgica.",
       "imageName": "Cisto_odontogenico_calcificante(gorlin).jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Gorlin.mrxs"  
     },
     {
@@ -309,6 +334,7 @@
       "histopathological": "1- Sólido convencional ou multicístico: apresenta uma grande tendência a desenvolver alterações císticas. Essa variante do ameloblastoma apresenta diversos padrões histológicos como folicular, plexiforme, acantomatoso, de células granulares, desmoplásico e de células basais. Sendo os padrões folicular e plexiforme os mais comuns.\n  - Padrão folicular: é o padrão mais comum, apresenta ilhas de epitélio em meio a um estroma maduro de tecido conjuntivo fibroso. Os ninhos epiteliais consistem em uma região central de células angulares arranjadas frouxamente, lembrando o retículo estrelado de um órgão do esmalte. A formação de cistos é comum e pode variar desde microcistos, até grandes cistos macroscópicos.\n  - Padrão Plexiforme: consiste em cordões longos e anastomosados delimitados por células colunares ou cúbicas semelhantes a ameloblastos. O estroma é vascular e frouxo. A formação de cistos nesta variante é incomum.\n2- Unicístico: existem 3 variantes histopatológicas:\n  -Luminal: o tumor está confinado à superfície luminal do cisto. A lesão consiste em uma parede cística fibrosa com um revestimento composto total ou parcialmente por epitélio ameloblástico. O epitélio exibe uma camada basal de células colunares ou cúbica, que apresenta polaridade reversa e vacuolização citoplasmática basilar.\n  -Intraluminal: nódulos de ameloblastomas se projetam do revestimento cístico em direção ao lúmen do cisto. Esses nódulos podem ser relativamente pequenos ou preencher grande parte do lúmen cístico.\n  -Mural: a parede fibrosa do cisto está infiltrada por ameloblastoma folicular ou plexiforme. A extensão e a profundidade da infiltração por ameloblastoma podem variar.\n3- Periférico (extra-ósseo):  apresenta ilhas de epitélio ameloblástico que ocupam a lâmina própria sob o epitélio superficial. Pode exibir qualquer uma das características do ameloblastoma intra ósseo, sendo os padrões plexiforme e folicular os mais comuns.",
       "treatment": "1- Sólido convencional ou multicístico: alguns casos são tratados com enucleação e acompanhamento rigoroso até uma ressecção em bloco.\n2- Unicístico: alguns casos são tratados com enucleação e acompanhamento rigoroso até uma ressecção em bloco.\n3- Periférico (extra-ósseo):  excisão cirúrgica local.",
       "imageName": "Ameloblastoma.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Amelo.mrxs"  
     },
     {
@@ -321,6 +347,7 @@
       "histopathological": "Epitélio odontogênico com arranjos variados e estruturas semelhantes a rosetas. O estroma de tecido conjuntivo é escasso e ocorre a proliferação de células epiteliais semelhantes a pré-ameloblastos se organizando em estruturas semelhantes a ductos.",
       "treatment": "Enucleação e curetagem. A recidiva é rara.",
       "imageName": "Tumor_odontogênico_adenomatoide.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/tumor_odontogenico_adenomatoide.mrxs"  
     },
     {
@@ -333,6 +360,7 @@
       "histopathological": "O tumor é composto de um tecido mesenquimal rico em células misturado ao epitélio odontogênico em proliferação que pode variar em cordões longos e delgados de epitélio ou pequenas ilhas celulares. A sua porção mesenquimal contém células ovóides e estreladas volumosas em uma matriz frouxa.",
       "treatment": "Excisão cirúrgica.",
       "imageName": "Fibroma_ameloblastico.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Fibroma_ameloblastico.mrxs"    
     },
     {
@@ -345,6 +373,7 @@
       "histopathological": "- Odontoma composto: são múltiplas estruturas lembrando pequenos dentes uniradiculares, contidos em uma matriz fibrosa frouxa. O tecido pulpar pode ser encontrado na porção coronal e radicular dos dentículos.\n- Odontoma complexo: consiste em dentina tubular madura. Essa dentina costuma conter em suas fendas, esmalte maduro. Pequenas ilhas de células fantasma epiteliais eosinofílicas, representam remanescentes do epitélio odontogênico.",
       "treatment": "Excisão local simples.",
       "imageName": "Odontoma.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Odontoma.mrxs"    
     },
     {
@@ -357,6 +386,7 @@
       "histopathological": "É composto por células arranjadas de formato estrelário, fusiforme ou arredondado, em um estroma abundante, frouxo e mixoide, que contém somente algumas fibrilas colágenas.",
       "treatment": "Lesões menores podem ser tratadas com curetagem. Lesões maiores, ressecção em bloco. O acompanhamento periódico é necessário.",
       "imageName": "Mixoma.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Mixoma.mrxs"   
     },
     {
@@ -369,6 +399,7 @@
       "histopathological": "Possui uma cápsula fina e friável. O revestimento epitelial é composto por uma camada uniforme de epitélio pavimentoso estratificado. A superfície do luminal possui células epiteliais paraqueratóticas achatadas. Pequenos cistos, cordões ou ilhas satélites de epitélio odontogênico podem ser observados na cápsula",
       "treatment": "Enucleação e curetagem.",
       "imageName": "Queratocisto.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Queratocisto.mrxs"   
     },
     {
@@ -381,6 +412,7 @@
       "histopathological": "Todos os padrões apresentam características histopatológicas semelhantes. Presença de fragmentos de tecido conjuntivo celular, hemorragia e uma mistura de osso imaturo, osso lamelar. À medida que a lesão amadurece, há uma redução da proporção entre tecido conjuntivo fibroso e o material mineralizado. Com o passar do tempo, as trabéculas ósseas se tornam espessas e curvilíneas. No estágio final, as trabéculas se fundem para formar massas globulares escleróticas de material cemento-ósseo desorganizado.",
       "treatment": "Para o paciente assintomático, é recomendado consultas de controle com profilaxia e reforço da higiene oral para controlar a doença periodontal e prevenir a perda dentária. A sintomatologia normalmente está associada a exposição de massas escleróticas na cavidade oral devido a atrofia alveolar progressiva.",
       "imageName": "",
+      "extraImages":[],
       "url": ""  
     },
     {
@@ -393,6 +425,7 @@
       "histopathological": "Exibe um tecido fibroso celularizado e contém material mineralizado. São lesões bem demarcadas, mas não encapsuladas. O componente mineralizado pode incluir uma variedade de osso osteóide, e esferas basofílicas acelulares. As trabéculas ósseas variam de tamanho e frequentemente demonstram uma mistura de padrões imatura e lamelar",
       "treatment": "Enucleação.",
       "imageName": "",
+      "extraImages":[],
       "url": ""  
     },
     {
@@ -405,6 +438,7 @@
       "histopathological": "Exibem células gigantes multinucleadas em estroma mononuclear de células ovoides a fusiformes. O estroma pode ser frouxamente arranjado e edematoso ou mais celularizado. Extravasamento de eritrócitos e a deposição de hemossiderina frequentemente são predominantes. Osso neoformado ou formação de osteóide podem estar presentes.",
       "treatment": "Curetagem. Lesões recorrentes podem precisar de ressecção em bloco.",
       "imageName": "",
+      "extraImages":[],
       "url": ""   
     },
     {
@@ -417,6 +451,7 @@
       "histopathological": "Os osteomas compactos são compostos de osso compacto de aparência normal apresentando pouco tecido medular. Osteomas esponjosos são compostos de trabéculas ósseas e medula fibrogordurosa. A atividade osteoblástica pode estar levemente aumentada",
       "treatment": "Pequenos osteomas assintomáticos não necessitam ser tratados, mas deveriam ser acompanhados periodicamente. Osteomas grandes e sintomáticos é apropriado realizar a excisão cirúrgica conservadora.",
       "imageName": "",
+      "extraImages":[],
       "url": ""  
     },
     {
@@ -429,6 +464,7 @@
       "histopathological": "Observa-se um aumento de volume nodular de tecido conjuntivo fibroso, recoberto por epitélio pavimentoso estratificado. O tecido conjuntivo é denso e colagenizado. O epitélio de superfície geralmente demonstra atrofia das cristas epiteliais devido ao aumento de volume do tecido subjacente. Entretanto, a superfície pode exibir hiperqueratose secundária a trauma.",
       "treatment": "Excisão cirúrgica conservadora, a recidiva é rara.",
       "imageName": "",
+      "extraImages":[],
       "url": ""  
     },
     {
@@ -441,6 +477,7 @@
       "histopathological": "São caracterizados por numerosas células endoteliais volumosas e lúmens vasculares.",
       "treatment": "A maioria dos hemangiomas da infância sofrem involução, sendo recomendado o acompanhamento a longo prazo.",
       "imageName": "Hemangioma.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Hemangioma.mrxs"  
     },
     {
@@ -453,6 +490,7 @@
       "histopathological": "É composta por adipócitos maduros que se diferenciam do tecido adiposo normal. É bem circunscrita e apresenta uma fina cápsula fibrosa. Possui uma variante que se chama fibrolipoma que é caracterizado por mais componente fibroso, misturados aos lóbulos de células adiposas.",
       "treatment": "Excisão cirúrgica conservadora, a recidiva é rara.",
       "imageName": "Lipoma.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Lipoma.mrxs"      
     },
     {
@@ -465,6 +503,7 @@
       "histopathological": "É caracterizado pela proliferação do epitélio pavimentoso estratificado queratinizado, com projeções semelhantes a dedos com tecido conjuntivo fibrovascular. Pode apresentar inflamação no tecido conjuntivo e uma cama de queratina espessa.",
       "treatment": "Excisão cirúrgica, as recidivas são incomuns.",
       "imageName": "Papiloma.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Papiloma.mrxs"      
     },
     {
@@ -477,6 +516,7 @@
       "histopathological": "São compostos de vasos linfáticos que podem mostrar dilatação discreta (microcística) ou estruturas macroscópicas semelhantes a cistos (macrocística). O endotélio delimitante é fino, e os espaços contêm fluido proteináceo e ocasionais linfócitos.",
       "treatment": "Lesões menores não associadas a alterações cosméticas e funcionais podem ser mais bem manejadas por acompanhamento apenas. Quando necessário o tratamento, opta-se por excisão cirúrgica ou escleroterapia percutânea. A remoção cirúrgica total pode não ser possível em todos os casos, devido ao grande tamanho ou envolvimento de estruturas vitais.",
       "imageName": "Linfangioma.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Linfangioma.mrxs"  
     },
     {
@@ -489,6 +529,7 @@
       "histopathological": "É bem circunscrito composto de feixes entrelaçados de células fusiformes com núcleo ondulado. Essas células se encontram associadas a delicados feixes colágenos e a quantidades variadas de matriz mixoide. Pequenos axônios, esparsamente distribuídos, podem ser evidenciados utilizando-se colorações de prata.",
       "treatment": "Excisão cirúrgica local, a recidiva é rara.",
       "imageName": "Neurofibroma.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Neurofibroma.mrxs"   
     },
     {
@@ -501,6 +542,7 @@
       "histopathological": "Apresenta dois padrões microscópicos: Antoni A e Antoni B. O padrão Antoni A é caracterizado por fascículos paralelos de células de Schwann fusiformes, formam um um arranjo em paliçada ao redor de uma área acelular eosinofílica central, conhecida como corpos de Verocay. O padrão Antoni B é menos celular e menos organizado, com células fusiformes arranjadas aleatoriamente dentro de um estroma frouxo e mixomado.",
       "treatment": "Excisão cirúrgica, a recidiva é rara.",
       "imageName": "Neurilemoma(Schwannoma).jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Schwannoma.mrxs"    
     },
     {
@@ -513,6 +555,7 @@
       "histopathological": "A separação intraepitelial característica, ocorre logo acima da camada de células basais do epitélio. As células da camada espinhosa do epitélio de superfície apresentam-se tipicamente separadas, uma característica que tem sido denominada acantólise. Um infiltrado leve a moderado de células inflamatórias crônicas normalmente é observado no tecido conjuntivo subjacente.",
       "treatment": "O tratamento deve ser realizado na fase inicial da doença pois o controle é alcançado com mais facilidade. O pênfigo é uma doença sistêmica; portanto, o tratamento consiste basicamente em corticosteroides sistêmicos.",
       "imageName": "",
+      "extraImages":[],
       "url": ""   
     },
     {
@@ -525,6 +568,7 @@
       "histopathological": "É observada a separação entre o epitélio e o tecido conjuntivo na zona da membrana basal, resultando em uma fenda subepitelial. Células inflamatórias agudas e crônicas, em uma intensidade leve, são observadas com frequência na área das lesões, e a presença de eosinófilos no interior da bolha é característica",
       "treatment": "O tratamento dos pacientes com penfigoide bolhoso leve ou moderado consiste na aplicação de um dos preparados mais fortes de corticosteróides tópicos. O manejo de pacientes com penfigoide bolhoso moderado a severo amplamente disseminado consiste na terapia imunossupressora sistêmica.",
       "imageName": "",
+      "extraImages":[],
       "url": ""   
     },
     {
@@ -537,6 +581,7 @@
       "histopathological": "Vesículas subepiteliais ou intraepiteliais podem ser observadas em associação com queratinócitos basais necróticos. Um infiltrado inflamatório misto está presente, constituído por linfócitos, neutrófilos e frequentemente eosinófilos.",
       "treatment": "O uso de corticosteróides sistêmicos ou tópicos foi frequentemente recomendado, em especial nas fases iniciais da doença.",
       "imageName": "",
+      "extraImages":[],
       "url": ""   
     },
     {
@@ -549,6 +594,7 @@
       "histopathological": "Graus variáveis de ortoqueratose e de paraqueratose podem estar presentes na superfície do epitélio. As cristas epiteliais podem estar ausentes ou hiperplásicas, mas classicamente são pontiagudas ou têm forma de “dentes de serra”.",
       "treatment": "- O líquen plano reticular normalmente não produz sintomas e nenhum tratamento é necessário.\n- O líquen plano erosivo com frequência é incômodo para o paciente, devido às feridas abertas presentes na cavidade bucal. Por ser uma condição imunomediada, os corticosteroides são recomendados.",
       "imageName": "Liquen_plano.jpg",
+      "extraImages":[],
       "url": "https://slideviewer.com.br/Liquen_plano.mrxs"    
     },
     {
@@ -561,6 +607,7 @@
       "histopathological": "O epitélio pode exibir diferentes graus de displasia. Normalmente apresenta hiperqueratose e o epitélio pode ser atrófico ou acantótico. O tecido conjuntivo demonstra uma faixa acelular amorfa, basofílica, conhecida como elastose solar, uma alteração do colágeno e fibras elásticas induzida pela luz UV. Também é possível visualizar um infiltrado inflamatório crônico e vasos sanguíneos dilatados.",
       "treatment": "Muitas das alterações associadas a queilite actínica são irreversíveis. Porém os pacientes devem ser orientados a reduzir as exposições solares, usar chapéu e protetor solar para evitar mais danos. Deve ser realizada a biópsia para descartar a possibilidade de um carcinoma. A vermelhectomia pode ser realizada em casos mais graves, mas que não haja transformações malignas.\nO acompanhamento a longo prazo deve ser realizado.",
       "imageName": "",
+      "extraImages":[],
       "url": ""  
     },
     {
@@ -573,6 +620,7 @@
       "histopathological": "Apresentam trabéculas de osso imaturo de formato irregular num estroma celular fibroso. Na periferia da lesão, o osso lesionado se funde ao osso normal, não estando presente cápsula ou linha de demarcação.",
       "treatment": "A displasia fibrosa tende a estabilizar quando a maturação esquelética é atingida. Lesões grandes com comprometimento estético e funcionais podem requerer tratamento cirúrgico.",
       "imageName": "",
+      "extraImages":[],
       "url": ""  
     },
     {
@@ -585,6 +633,7 @@
       "histopathological": "Nunca existe um revestimento epitelial. As paredes do defeito são forradas por uma camada fina de tecido conjuntivo fibroso vascular. Existem áreas de fibrina, eritrócitos dispersos, ocasionais células gigantes e calcificações distróficas em forma de laço.",
       "treatment": "Curetagem",
       "imageName": "",
+      "extraImages":[],
       "url": ""  
     },
     {
@@ -597,6 +646,7 @@
       "histopathological": "É caracterizado por espaços preenchidos por sangue não coagulado. Esses espaços não são revestidos por endotélio ou epitélio, são circundados por tecido fibroblástico celularizado.",
       "treatment": "Curetagem e enucleação",
       "imageName": "",
+      "extraImages":[],
       "url": ""  
     }
   ]

@@ -8,6 +8,7 @@ class InjuryDetailModel {
   final String histopathological;
   final String treatment;
   final String imageName;
+  final List<String>? extraImages;
   final String url;
 
   InjuryDetailModel(
@@ -20,6 +21,7 @@ class InjuryDetailModel {
       required this.histopathological,
       required this.treatment,
       required this.imageName,
+      required this.extraImages,
       required this.url});
 
   factory InjuryDetailModel.fromJson(Map<String, dynamic> json) {
@@ -33,6 +35,9 @@ class InjuryDetailModel {
         histopathological: json['histopathological'],
         treatment: json['treatment'],
         imageName: json['imageName'],
+        extraImages: json['extraImages'] != null
+            ? List<String>.from(json['extraImages'])
+            : [],
         url: json['url']);
   }
 }
