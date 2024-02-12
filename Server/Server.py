@@ -21,7 +21,7 @@ if os.name == 'nt':
 else:
     import openslide
 
-from openslide import OpenSlide, OpenSlideCache, OpenSlideError, OpenSlideVersionError
+from openslide import OpenSlide, OpenSlideError
 from openslide.deepzoom import DeepZoomGenerator
 
 # Optimized sRGB v2 profile, CC0-1.0 license
@@ -40,84 +40,6 @@ SRGB_PROFILE_BYTES = zlib.decompress(
     )
 )
 SRGB_PROFILE = ImageCms.getOpenProfile(BytesIO(SRGB_PROFILE_BYTES))
-
-class _SlideCache:
-    def __init__(self, cache_size, tile_cache_mb, dz_opts, color_mode):
-        self.cache_size = cache_size
-        self.dz_opts = dz_opts
-        self.color_mode = color_mode
-        self._lock = Lock()
-        self._cache = OrderedDict()
-        # Share a single tile cache among all slide handles, if supported
-        try:
-            self._tile_cache = OpenSlideCache(tile_cache_mb * 1024 * 1024)
-        except OpenSlideVersionError as error:
-            self._tile_cache = None
-
-    def get(self, path):
-        with self._lock:
-            if path in self._cache:
-                # Move to end of LRU
-                slide = self._cache.pop(path)
-                self._cache[path] = slide
-                return slide
-
-        osr = OpenSlide(path)
-        if self._tile_cache is not None:
-            osr.set_cache(self._tile_cache)
-        slide = DeepZoomGenerator(osr, **self.dz_opts)
-        try:
-            mpp_x = osr.properties[openslide.PROPERTY_NAME_MPP_X]
-            mpp_y = osr.properties[openslide.PROPERTY_NAME_MPP_Y]
-            slide.mpp = (float(mpp_x) + float(mpp_y)) / 2
-        except (KeyError, ValueError):
-            slide.mpp = 0
-        slide.transform = self._get_transform(osr)
-
-        with self._lock:
-            if path not in self._cache:
-                if len(self._cache) == self.cache_size:
-                    self._cache.popitem(last=False)
-                self._cache[path] = slide
-        return slide
-
-    def _get_transform(self, image):
-        if image.color_profile is None:
-            return lambda img: None
-        mode = self.color_mode
-        if mode == 'ignore':
-            # drop ICC profile from tiles
-            return lambda img: img.info.pop('icc_profile')
-        elif mode == 'embed':
-            # embed ICC profile in tiles
-            return lambda img: None
-        elif mode == 'absolute-colorimetric':
-            intent = ImageCms.Intent.ABSOLUTE_COLORIMETRIC
-        elif mode == 'relative-colorimetric':
-            intent = ImageCms.Intent.RELATIVE_COLORIMETRIC
-        elif mode == 'perceptual':
-            intent = ImageCms.Intent.PERCEPTUAL
-        elif mode == 'saturation':
-            intent = ImageCms.Intent.SATURATION
-        else:
-            raise ValueError(f'Unknown color mode {mode}')
-        transform = ImageCms.buildTransform(
-            image.color_profile,
-            SRGB_PROFILE,
-            'RGB',
-            'RGB',
-            intent,
-            0,
-        )
-
-        def xfrm(img):
-            ImageCms.applyTransform(img, transform, True)
-            # Some browsers assume we intend the display's color space if we
-            # don't embed the profile.  Pillow's serialization is larger, so
-            # use ours.
-            img.info['icc_profile'] = SRGB_PROFILE_BYTES
-
-        return xfrm
 
 
 class _Directory:
@@ -142,8 +64,6 @@ class _SlideFile:
 app = Flask(__name__)
 app.config.from_mapping(
     SLIDE_DIR='./images',
-    SLIDE_CACHE_SIZE= 10, #10,
-    SLIDE_TILE_CACHE_MB= 128, #128,
     DEEPZOOM_FORMAT='jpeg',
     DEEPZOOM_TILE_SIZE=254,
     DEEPZOOM_OVERLAP= 10, #1,
@@ -152,25 +72,44 @@ app.config.from_mapping(
     DEEPZOOM_COLOR_MODE='absolute-colorimetric',
 )
 app.config.from_envvar('DEEPZOOM_MULTISERVER_SETTINGS', silent=True)
-# if config_file is not None:
-#     app.config.from_pyfile(config_file)
-# if config is not None:
-#     app.config.from_mapping(config)
 
-# Set up cache
+
 app.basedir = os.path.abspath(app.config['SLIDE_DIR'])
 config_map = {
     'DEEPZOOM_TILE_SIZE': 'tile_size',
     'DEEPZOOM_OVERLAP': 'overlap',
     'DEEPZOOM_LIMIT_BOUNDS': 'limit_bounds',
 }
-opts = {v: app.config[k] for k, v in config_map.items()}
-app.cache = _SlideCache(
-    app.config['SLIDE_CACHE_SIZE'],
-    app.config['SLIDE_TILE_CACHE_MB'],
-    opts,
-    app.config['DEEPZOOM_COLOR_MODE'],
-)
+
+def get_transform(image):
+    if image.color_profile is None:
+        return lambda img: None
+    mode = app.config['DEEPZOOM_COLOR_MODE']
+
+    if mode == 'ignore':
+        # drop ICC profile from tiles
+        return lambda img: img.info.pop('icc_profile')
+    elif mode == 'embed':
+        # embed ICC profile in tiles
+        return lambda img: None
+    elif mode == 'absolute-colorimetric':
+        intent = ImageCms.Intent.ABSOLUTE_COLORIMETRIC
+    elif mode == 'relative-colorimetric':
+        intent = ImageCms.Intent.RELATIVE_COLORIMETRIC
+    elif mode == 'perceptual':
+        intent = ImageCms.Intent.PERCEPTUAL
+    elif mode == 'saturation':
+        intent = ImageCms.Intent.SATURATION
+    else:
+        raise ValueError(f'Unknown color mode {mode}')
+    
+    transform = ImageCms.buildTransform(
+        image.color_profile,
+        SRGB_PROFILE,
+        'RGB',
+        'RGB',
+        intent,
+        0)
 
 # Helper functions
 def get_slide(path):
@@ -181,7 +120,17 @@ def get_slide(path):
     if not os.path.exists(path):
         abort(404)
     try:
-        slide = app.cache.get(path)
+        osr = OpenSlide(path)
+        slide = DeepZoomGenerator(osr = osr,
+                                  limit_bounds = app.config['DEEPZOOM_LIMIT_BOUNDS'],
+                                  overlap = app.config['DEEPZOOM_OVERLAP'],
+                                  tile_size = app.config['DEEPZOOM_TILE_SIZE'])
+        
+        mpp_x = osr.properties[openslide.PROPERTY_NAME_MPP_X]
+        mpp_y = osr.properties[openslide.PROPERTY_NAME_MPP_Y]
+        slide.mpp = (float(mpp_x) + float(mpp_y)) / 2
+        slide.transform = get_transform(osr)
+
         slide.filename = os.path.basename(path)
         return slide
     except OpenSlideError:
