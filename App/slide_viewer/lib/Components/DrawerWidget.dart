@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slide_viewer/AboutPage.dart';
+import 'package:slide_viewer/CaseStudiesListPage.dart';
 import 'package:slide_viewer/injuriesGroup.dart';
 
 import '../Style/CustomTextStyle.dart';
@@ -46,18 +47,10 @@ class DrawerWidget extends StatelessWidget {
                 style: subTitle3TextStyle(),
               ),
               onTap: () {
-                Navigator.pop(context);
-
-                var snackBar = SnackBar(
-                  content: Text(
-                    "Essa funcionalidades estará disponível em atualizações futuras",
-                    style: subTitle3TextStyle(),
-                  ),
-                  duration: const Duration(seconds: 2),
-                  showCloseIcon: true,
-                  backgroundColor: const Color.fromARGB(255, 128, 77, 113),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CaseStudiesListPage()));
               },
             ),
             ListTile(

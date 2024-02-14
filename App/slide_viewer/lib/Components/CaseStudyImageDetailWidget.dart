@@ -2,31 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:photo_view/photo_view.dart';
 
-import '../Services/InternetCheckerService.dart';
-import '../Services/Models/InjuryDetailModel.dart';
-import '../Style/CustomTextStyle.dart';
-import '../WebSlideView.dart';
+import '../Services/Models/CaseStudyModel.dart';
 
 const double imageHeight = 230;
 
-class InjuryImageDetailWidget extends StatelessWidget {
-  final InjuryDetailModel injuryModel;
+class CaseStudyImageDetailWidget extends StatelessWidget {
+  final CaseStudyModel caseStudyModel;
 
-  const InjuryImageDetailWidget({
+  const CaseStudyImageDetailWidget({
     super.key,
-    required this.injuryModel,
+    required this.caseStudyModel,
   });
 
   @override
   Widget build(BuildContext context) {
     List<String> imagesToShow = [];
 
-    if (injuryModel.imageName.isNotEmpty) {
-      imagesToShow.add('assets/laminas/' + injuryModel.imageName);
-    }
-    if (injuryModel.extraImages!.length > 0) {
-      for (String img in injuryModel.extraImages!) {
-        imagesToShow.add('assets/laminas/ImagensExtra/' + img);
+    if (caseStudyModel.images!.length > 0) {
+      for (String img in caseStudyModel.images!) {
+        imagesToShow.add('assets/caseStudies/' + img);
       }
     }
 
@@ -38,7 +32,7 @@ class InjuryImageDetailWidget extends StatelessWidget {
       return Container(
           child: GestureDetector(
               onTap: () {
-                NavigateAccordingImageType(context, imagesToShow.first);
+                FullScreenCurrentImage(context, imagesToShow.first);
               },
               child: Hero(
                   tag: imagesToShow.first,
@@ -60,24 +54,20 @@ class InjuryImageDetailWidget extends StatelessWidget {
     }
   }
 
-  void NavigateAccordingImageType(BuildContext context, String imageToShow) {
-    if (imageToShow.contains("ImagensExtra")) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => FullScreenImage(imageUrl: imageToShow),
-        ),
-      );
-    } else {
-      ShowImageAccordingInternetConnection(context, injuryModel.url);
-    }
+  void FullScreenCurrentImage(BuildContext context, String imageToShow) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FullScreenImage(imageUrl: imageToShow),
+      ),
+    );
   }
 
   List<Widget> formatImageSliders(BuildContext context, List<String> imgList) {
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
               child: GestureDetector(
-                onTap: () => NavigateAccordingImageType(
+                onTap: () => FullScreenCurrentImage(
                     context, imgList.elementAt(imgList.indexOf(item))),
                 child: Container(
                   margin: EdgeInsets.all(5.0),
@@ -117,28 +107,6 @@ class InjuryImageDetailWidget extends StatelessWidget {
             ))
         .toList();
     return imageSliders;
-  }
-
-  void ShowImageAccordingInternetConnection(BuildContext context, String url) {
-    InternetCheckerService().hasInternetConnection().then((hasConnection) {
-      if (hasConnection) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => WebSlideView(selectedUrl: url)));
-      } else {
-        var snackBar = SnackBar(
-          content: Text(
-            "Para ver em detalhes, é necessário conexão com a internet",
-            style: subTitle3TextStyle(),
-          ),
-          duration: const Duration(seconds: 4),
-          showCloseIcon: true,
-          backgroundColor: const Color.fromARGB(255, 128, 77, 113),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      }
-    });
   }
 }
 

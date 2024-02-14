@@ -114,6 +114,8 @@ flutter:
   assets:
     - assets/patologies.json
     - assets/patologiesDetails.json
+    - assets/caseStudies.json
+    - assets/caseStudies/
     - assets/images/
     - assets/laminas/
     - assets/laminas/ImagensExtra/
