@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class WebSlideView extends StatelessWidget {
+class WebSlideViewPage extends StatelessWidget {
   final String selectedUrl;
 
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
 
-  WebSlideView({
+  WebSlideViewPage({
     super.key,
     required this.selectedUrl,
   });

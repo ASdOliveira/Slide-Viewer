@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:slide_viewer/AboutPage.dart';
-import 'package:slide_viewer/CaseStudiesListPage.dart';
-import 'package:slide_viewer/injuriesGroup.dart';
 
-import '../Style/CustomTextStyle.dart';
+import '../../Pages/Others/AboutPage.dart';
+import '../../Pages/CaseStudies/CaseStudiesListPage.dart';
+import '../../Pages/Patologies/PatologiesGroup.dart';
+import '../../Styles/CustomTextStyle.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -38,7 +38,7 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => InjuriesGroup()));
+                    MaterialPageRoute(builder: (context) => PatologiesGroup()));
               },
             ),
             ListTile(

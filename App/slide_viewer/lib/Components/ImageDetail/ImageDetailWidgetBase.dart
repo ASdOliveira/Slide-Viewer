@@ -2,27 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:photo_view/photo_view.dart';
 
-import '../Services/Models/CaseStudyModel.dart';
-
 const double imageHeight = 230;
 
-class CaseStudyImageDetailWidget extends StatelessWidget {
-  final CaseStudyModel caseStudyModel;
-
-  const CaseStudyImageDetailWidget({
-    super.key,
-    required this.caseStudyModel,
-  });
+abstract class ImageDetailWidgetBase extends StatelessWidget {
+  const ImageDetailWidgetBase({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<String> imagesToShow = [];
-
-    if (caseStudyModel.images!.length > 0) {
-      for (String img in caseStudyModel.images!) {
-        imagesToShow.add('assets/caseStudies/' + img);
-      }
-    }
+    List<String> imagesToShow = SortImagesToBeShown();
 
     if (imagesToShow.length == 0) {
       //if there arn't any image, nothing should be shown
@@ -54,14 +41,9 @@ class CaseStudyImageDetailWidget extends StatelessWidget {
     }
   }
 
-  void FullScreenCurrentImage(BuildContext context, String imageToShow) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => FullScreenImage(imageUrl: imageToShow),
-      ),
-    );
-  }
+  List<String> SortImagesToBeShown();
+
+  void FullScreenCurrentImage(BuildContext context, String imageToShow);
 
   List<Widget> formatImageSliders(BuildContext context, List<String> imgList) {
     final List<Widget> imageSliders = imgList
