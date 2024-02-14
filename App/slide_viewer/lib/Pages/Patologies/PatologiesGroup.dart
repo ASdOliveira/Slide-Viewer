@@ -60,7 +60,7 @@ class PatologiesGroupState extends State<PatologiesGroup> {
                       Navigator.push(
                         context,
                         PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => InjuriesSubGroup(
+                            pageBuilder: (_, __, ___) => PatologiesSubGroup(
                                 parentId: buttons[index].id,
                                 parentName: buttons[index].label),
                             transitionDuration:

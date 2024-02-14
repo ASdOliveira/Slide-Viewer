@@ -7,22 +7,22 @@ import '../../Services/Models/PatologyDetailModel.dart';
 import '../../Styles/CustomTextStyle.dart';
 
 class PatologyImageDetailWidget extends ImageDetailWidgetBase {
-  final PatologyDetailModel injuryModel;
+  final PatologyDetailModel PatologyModel;
 
   const PatologyImageDetailWidget({
     super.key,
-    required this.injuryModel,
+    required this.PatologyModel,
   });
 
   @override
   List<String> SortImagesToBeShown() {
     List<String> imagesToShow = [];
 
-    if (injuryModel.imageName.isNotEmpty) {
-      imagesToShow.add('assets/laminas/' + injuryModel.imageName);
+    if (PatologyModel.imageName.isNotEmpty) {
+      imagesToShow.add('assets/laminas/' + PatologyModel.imageName);
     }
-    if (injuryModel.extraImages!.length > 0) {
-      for (String img in injuryModel.extraImages!) {
+    if (PatologyModel.extraImages!.length > 0) {
+      for (String img in PatologyModel.extraImages!) {
         imagesToShow.add('assets/laminas/ImagensExtra/' + img);
       }
     }
@@ -40,7 +40,7 @@ class PatologyImageDetailWidget extends ImageDetailWidgetBase {
         ),
       );
     } else {
-      _ShowImageAccordingInternetConnection(context, injuryModel.url);
+      _ShowImageAccordingInternetConnection(context, PatologyModel.url);
     }
   }
 
@@ -53,7 +53,7 @@ class PatologyImageDetailWidget extends ImageDetailWidgetBase {
         ),
       );
     } else {
-      _ShowImageAccordingInternetConnection(context, injuryModel.url);
+      _ShowImageAccordingInternetConnection(context, PatologyModel.url);
     }
   }
 

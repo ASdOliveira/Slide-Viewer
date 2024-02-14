@@ -8,24 +8,24 @@ import '../../Components/Utils/SearchWidget.dart';
 import '../../Services/PatologyDetailService.dart';
 import '../../Services/Models/PatologyDetailModel.dart';
 
-class InjuryDetail extends StatefulWidget {
+class PatologyDetail extends StatefulWidget {
   final int Id;
 
-  const InjuryDetail({super.key, required this.Id});
+  const PatologyDetail({super.key, required this.Id});
 
   @override
-  InjuryDetailState createState() => InjuryDetailState();
+  PatologyDetailState createState() => PatologyDetailState();
 }
 
-class InjuryDetailState extends State<InjuryDetail> {
-  late PatologyDetailModel injuryModel;
+class PatologyDetailState extends State<PatologyDetail> {
+  late PatologyDetailModel PatologyModel;
 
-  InjuryDetailState();
+  PatologyDetailState();
 
   @override
   void initState() {
     super.initState();
-    injuryModel = PatologyDetailService().getListFilteredById(widget.Id);
+    PatologyModel = PatologyDetailService().getListFilteredById(widget.Id);
   }
 
   @override
@@ -44,13 +44,13 @@ class InjuryDetailState extends State<InjuryDetail> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 15, 0, 15),
               child: H1TextWidget(
-                text: injuryModel.label,
+                text: PatologyModel.label,
               ),
             ),
             Container(
               alignment: Alignment.center,
               child: PatologyImageDetailWidget(
-                injuryModel: injuryModel,
+                PatologyModel: PatologyModel,
               ),
             ),
             Expanded(
@@ -59,18 +59,18 @@ class InjuryDetailState extends State<InjuryDetail> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     DetailTextContainer(
-                        title: "Descrição", body: injuryModel.description),
+                        title: "Descrição", body: PatologyModel.description),
                     DetailTextContainer(
                         title: "Características Clínicas",
-                        body: injuryModel.clinicalCharacs),
+                        body: PatologyModel.clinicalCharacs),
                     DetailTextContainer(
                         title: "Características Radiográficas",
-                        body: injuryModel.radiographicalCharacs),
+                        body: PatologyModel.radiographicalCharacs),
                     DetailTextContainer(
                         title: "Características Histopatológicas",
-                        body: injuryModel.histopathological),
+                        body: PatologyModel.histopathological),
                     DetailTextContainer(
-                        title: "Tratamento", body: injuryModel.treatment),
+                        title: "Tratamento", body: PatologyModel.treatment),
                   ],
                 ),
               ),

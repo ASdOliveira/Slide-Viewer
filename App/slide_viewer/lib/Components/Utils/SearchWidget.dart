@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-import '../../Pages/Patologies/InjuryDetail.dart';
+import '../../Pages/Patologies/PatologyDetail.dart';
 import '../../Services/PatologyDetailService.dart';
 import '../../Services/Models/PatologyDetailModel.dart';
 import '../../Styles/CustomTextStyle.dart';
@@ -55,7 +55,7 @@ class SearchWidget extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => InjuryDetail(Id: suggestion.id),
+              builder: (context) => PatologyDetail(Id: suggestion.id),
             ),
           );
         },

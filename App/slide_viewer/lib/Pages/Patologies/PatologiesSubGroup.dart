@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'InjuryDetail.dart';
+import 'PatologyDetail.dart';
 import '../../Components/Text/H1TextWidget.dart';
 import '../../Components/Text/H2TextWidget.dart';
 import '../../Components/Utils/DrawerWidget.dart';
@@ -9,20 +9,20 @@ import '../../Services/PatologyDetailService.dart';
 import '../../Services/Models/PatologyDetailModel.dart';
 import '../../Styles/CustomButtonStyle.dart';
 
-class InjuriesSubGroup extends StatefulWidget {
+class PatologiesSubGroup extends StatefulWidget {
   final int parentId;
   final String parentName;
-  const InjuriesSubGroup(
+  const PatologiesSubGroup(
       {super.key, required this.parentId, required this.parentName});
 
   @override
-  InjuriesSubGroupState createState() => InjuriesSubGroupState();
+  PatologiesSubGroupState createState() => PatologiesSubGroupState();
 }
 
-class InjuriesSubGroupState extends State<InjuriesSubGroup> {
+class PatologiesSubGroupState extends State<PatologiesSubGroup> {
   List<PatologyDetailModel> buttonsFiltered = [];
 
-  InjuriesSubGroupState();
+  PatologiesSubGroupState();
 
   @override
   void initState() {
@@ -68,7 +68,7 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
                         context,
                         PageRouteBuilder(
                             pageBuilder: (_, __, ___) =>
-                                InjuryDetail(Id: buttonsFiltered[index].id),
+                                PatologyDetail(Id: buttonsFiltered[index].id),
                             transitionDuration:
                                 const Duration(milliseconds: 200),
                             transitionsBuilder: (_, a, __, c) =>

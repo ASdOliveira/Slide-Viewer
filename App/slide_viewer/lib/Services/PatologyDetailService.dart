@@ -7,7 +7,7 @@ class PatologyDetailService {
   static final PatologyDetailService _instance =
       PatologyDetailService._internal();
 
-  List<PatologyDetailModel> _injuriesDetails = [];
+  List<PatologyDetailModel> _PatologiesDetails = [];
 
   PatologyDetailService._internal();
 
@@ -21,22 +21,22 @@ class PatologyDetailService {
 
     List<dynamic> jsonData = json.decode(jsonContent);
 
-    _injuriesDetails =
+    _PatologiesDetails =
         jsonData.map((item) => PatologyDetailModel.fromJson(item)).toList();
-    _injuriesDetails.sort((a, b) => a.label.compareTo(b.label));
+    _PatologiesDetails.sort((a, b) => a.label.compareTo(b.label));
 
-    return _injuriesDetails;
+    return _PatologiesDetails;
   }
 
   List<PatologyDetailModel> getList() {
-    return _injuriesDetails;
+    return _PatologiesDetails;
   }
 
   List<PatologyDetailModel> getListFilteredByParent(int parentId) {
-    return _injuriesDetails.where((item) => item.parent == parentId).toList();
+    return _PatologiesDetails.where((item) => item.parent == parentId).toList();
   }
 
   PatologyDetailModel getListFilteredById(int id) {
-    return _injuriesDetails.where((item) => item.id == id).first;
+    return _PatologiesDetails.where((item) => item.id == id).first;
   }
 }
