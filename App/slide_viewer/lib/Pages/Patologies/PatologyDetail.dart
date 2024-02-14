@@ -1,81 +1,33 @@
 import 'package:flutter/material.dart';
 
-import '../../Components/ImageDetail/PatologyImageDetailWidget.dart';
-import '../../Components/Text/H1TextWidget.dart';
 import '../../Components/Text/DetailTextContainer.dart';
-import '../../Components/Utils/DrawerWidget.dart';
-import '../../Components/Utils/SearchWidget.dart';
 import '../../Services/PatologyDetailService.dart';
-import '../../Services/Models/PatologyDetailModel.dart';
+import '../Base/DetailBase.dart';
 
-class PatologyDetail extends StatefulWidget {
+class PatologyDetail extends DetailBase {
   final int Id;
 
-  const PatologyDetail({super.key, required this.Id});
+  const PatologyDetail({super.key, required this.Id})
+      : super(Id: Id, showSearchWidget: true);
 
   @override
-  PatologyDetailState createState() => PatologyDetailState();
-}
-
-class PatologyDetailState extends State<PatologyDetail> {
-  late PatologyDetailModel PatologyModel;
-
-  PatologyDetailState();
-
-  @override
-  void initState() {
-    super.initState();
-    PatologyModel = PatologyDetailService().getListFilteredById(widget.Id);
+  dynamic getModel(int Id) {
+    return PatologyDetailService().getListFilteredById(Id);
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF672855),
-        title: const SearchWidget(),
-      ),
-      drawer: DrawerWidget(),
-      backgroundColor: const Color(0xFFEAEFF3),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 15, 0, 15),
-              child: H1TextWidget(
-                text: PatologyModel.label,
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: PatologyImageDetailWidget(
-                PatologyModel: PatologyModel,
-              ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    DetailTextContainer(
-                        title: "Descrição", body: PatologyModel.description),
-                    DetailTextContainer(
-                        title: "Características Clínicas",
-                        body: PatologyModel.clinicalCharacs),
-                    DetailTextContainer(
-                        title: "Características Radiográficas",
-                        body: PatologyModel.radiographicalCharacs),
-                    DetailTextContainer(
-                        title: "Características Histopatológicas",
-                        body: PatologyModel.histopathological),
-                    DetailTextContainer(
-                        title: "Tratamento", body: PatologyModel.treatment),
-                  ],
-                ),
-              ),
-            ),
-          ]),
-    );
+  List<Widget> GetFields(Model) {
+    return [
+      DetailTextContainer(title: "Descrição", body: Model.description),
+      DetailTextContainer(
+          title: "Características Clínicas", body: Model.clinicalCharacs),
+      DetailTextContainer(
+          title: "Características Radiográficas",
+          body: Model.radiographicalCharacs),
+      DetailTextContainer(
+          title: "Características Histopatológicas",
+          body: Model.histopathological),
+      DetailTextContainer(title: "Tratamento", body: Model.treatment),
+    ];
   }
 }
