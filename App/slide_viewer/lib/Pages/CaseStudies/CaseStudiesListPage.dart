@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'CaseStudyDetail.dart';
-import 'Components/Text/H1TextWidget.dart';
-import 'Components/Text/H2TextWidget.dart';
-import 'Components/Utils/DrawerWidget.dart';
-import 'Services/CaseStudiesService.dart';
-import 'Services/Models/CaseStudyModel.dart';
-import 'Style/CustomButtonStyle.dart';
+import '../../Components/Text/H1TextWidget.dart';
+import '../../Components/Text/H2TextWidget.dart';
+import '../../Components/Utils/DrawerWidget.dart';
+import '../../Services/CaseStudiesService.dart';
+import '../../Services/Models/CaseStudyModel.dart';
+import '../../Styles/CustomButtonStyle.dart';
 
 class CaseStudiesListPage extends StatefulWidget {
   const CaseStudiesListPage({super.key});

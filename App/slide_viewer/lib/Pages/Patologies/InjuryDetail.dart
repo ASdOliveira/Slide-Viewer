@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'Components/ImageDetail/InjuryImageDetailWidget.dart';
-import 'Components/Text/H1TextWidget.dart';
-import 'Components/Text/DetailTextContainer.dart';
-import 'Components/Utils/DrawerWidget.dart';
-import 'Components/Utils/SearchWidget.dart';
-import 'Services/InjuryDetailService.dart';
-import 'Services/Models/InjuryDetailModel.dart';
+import '../../Components/ImageDetail/PatologyImageDetailWidget.dart';
+import '../../Components/Text/H1TextWidget.dart';
+import '../../Components/Text/DetailTextContainer.dart';
+import '../../Components/Utils/DrawerWidget.dart';
+import '../../Components/Utils/SearchWidget.dart';
+import '../../Services/PatologyDetailService.dart';
+import '../../Services/Models/PatologyDetailModel.dart';
 
 class InjuryDetail extends StatefulWidget {
   final int Id;
@@ -18,14 +18,14 @@ class InjuryDetail extends StatefulWidget {
 }
 
 class InjuryDetailState extends State<InjuryDetail> {
-  late InjuryDetailModel injuryModel;
+  late PatologyDetailModel injuryModel;
 
   InjuryDetailState();
 
   @override
   void initState() {
     super.initState();
-    injuryModel = InjuryDetailService().getListFilteredById(widget.Id);
+    injuryModel = PatologyDetailService().getListFilteredById(widget.Id);
   }
 
   @override
@@ -49,7 +49,7 @@ class InjuryDetailState extends State<InjuryDetail> {
             ),
             Container(
               alignment: Alignment.center,
-              child: InjuryImageDetailWidget(
+              child: PatologyImageDetailWidget(
                 injuryModel: injuryModel,
               ),
             ),

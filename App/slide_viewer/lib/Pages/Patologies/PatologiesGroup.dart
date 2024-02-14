@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-import 'injuriesSubGroup.dart';
-import 'Components/Text/H1TextWidget.dart';
-import 'Components/Text/H2TextWidget.dart';
-import 'Components/Utils/DrawerWidget.dart';
-import 'Components/Utils/SearchWidget.dart';
-import 'Services/InjuriesGroupService.dart';
-import 'Services/Models/InjuriesGroupModel.dart';
-import 'Style/CustomButtonStyle.dart';
+import 'PatologiesSubGroup.dart';
+import '../../Components/Text/H1TextWidget.dart';
+import '../../Components/Text/H2TextWidget.dart';
+import '../../Components/Utils/DrawerWidget.dart';
+import '../../Components/Utils/SearchWidget.dart';
+import '../../Services/PatologiesGroupService.dart';
+import '../../Services/Models/PatologiesGroupModel.dart';
+import '../../Styles/CustomButtonStyle.dart';
 
-class InjuriesGroup extends StatefulWidget {
-  const InjuriesGroup({super.key});
+class PatologiesGroup extends StatefulWidget {
+  const PatologiesGroup({super.key});
 
   @override
-  InjuriesGroupState createState() => InjuriesGroupState();
+  PatologiesGroupState createState() => PatologiesGroupState();
 }
 
-class InjuriesGroupState extends State<InjuriesGroup> {
-  List<InjuriesGroupModel> buttons = InjuriesGroupService().getList();
+class PatologiesGroupState extends State<PatologiesGroup> {
+  List<PatologiesGroupModel> buttons = PatologiesGroupService().getList();
 
   @override
   void initState() {

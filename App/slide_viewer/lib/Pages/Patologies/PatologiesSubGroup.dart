@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'InjuryDetail.dart';
-import 'Components/Text/H1TextWidget.dart';
-import 'Components/Text/H2TextWidget.dart';
-import 'Components/Utils/DrawerWidget.dart';
-import 'Components/Utils/SearchWidget.dart';
-import 'Services/InjuryDetailService.dart';
-import 'Services/Models/InjuryDetailModel.dart';
-import 'Style/CustomButtonStyle.dart';
+import '../../Components/Text/H1TextWidget.dart';
+import '../../Components/Text/H2TextWidget.dart';
+import '../../Components/Utils/DrawerWidget.dart';
+import '../../Components/Utils/SearchWidget.dart';
+import '../../Services/PatologyDetailService.dart';
+import '../../Services/Models/PatologyDetailModel.dart';
+import '../../Styles/CustomButtonStyle.dart';
 
 class InjuriesSubGroup extends StatefulWidget {
   final int parentId;
@@ -20,7 +20,7 @@ class InjuriesSubGroup extends StatefulWidget {
 }
 
 class InjuriesSubGroupState extends State<InjuriesSubGroup> {
-  List<InjuryDetailModel> buttonsFiltered = [];
+  List<PatologyDetailModel> buttonsFiltered = [];
 
   InjuriesSubGroupState();
 
@@ -28,7 +28,7 @@ class InjuriesSubGroupState extends State<InjuriesSubGroup> {
   void initState() {
     super.initState();
     buttonsFiltered =
-        InjuryDetailService().getListFilteredByParent(widget.parentId);
+        PatologyDetailService().getListFilteredByParent(widget.parentId);
   }
 
   @override

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-import '../../InjuryDetail.dart';
-import '../../Services/InjuryDetailService.dart';
-import '../../Services/Models/InjuryDetailModel.dart';
-import '../../Style/CustomTextStyle.dart';
+import '../../Pages/Patologies/InjuryDetail.dart';
+import '../../Services/PatologyDetailService.dart';
+import '../../Services/Models/PatologyDetailModel.dart';
+import '../../Styles/CustomTextStyle.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({super.key});
@@ -14,7 +14,7 @@ class SearchWidget extends StatelessWidget {
     return SizedBox(
       width: 300,
       height: 45,
-      child: TypeAheadField<InjuryDetailModel>(
+      child: TypeAheadField<PatologyDetailModel>(
         minCharsForSuggestions: 1,
         textFieldConfiguration: TextFieldConfiguration(
           textAlignVertical: TextAlignVertical.bottom,
@@ -36,14 +36,14 @@ class SearchWidget extends StatelessWidget {
           ),
         ),
         suggestionsCallback: (pattern) async {
-          return InjuryDetailService()
+          return PatologyDetailService()
               .getList()
               .where((objeto) =>
                   objeto.label.toLowerCase().contains(pattern.toLowerCase()))
               .take(6)
               .toList();
         },
-        itemBuilder: (context, InjuryDetailModel suggestion) {
+        itemBuilder: (context, PatologyDetailModel suggestion) {
           return ListTile(
             title: Text(
               suggestion.label,
@@ -51,7 +51,7 @@ class SearchWidget extends StatelessWidget {
             ),
           );
         },
-        onSuggestionSelected: (InjuryDetailModel suggestion) {
+        onSuggestionSelected: (PatologyDetailModel suggestion) {
           Navigator.push(
             context,
             MaterialPageRoute(

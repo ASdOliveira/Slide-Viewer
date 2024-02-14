@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'Components/ImageDetail/CaseStudyImageDetailWidget.dart';
-import 'Components/Text/DetailTextContainer.dart';
-import 'Components/Text/H1TextWidget.dart';
-import 'Components/Utils/DrawerWidget.dart';
-import 'Services/CaseStudiesService.dart';
-import 'Services/Models/CaseStudyModel.dart';
+import '../../Components/ImageDetail/CaseStudyImageDetailWidget.dart';
+import '../../Components/Text/DetailTextContainer.dart';
+import '../../Components/Text/H1TextWidget.dart';
+import '../../Components/Utils/DrawerWidget.dart';
+import '../../Services/CaseStudiesService.dart';
+import '../../Services/Models/CaseStudyModel.dart';
 
 class CaseStudyDetail extends StatefulWidget {
   final int Id;

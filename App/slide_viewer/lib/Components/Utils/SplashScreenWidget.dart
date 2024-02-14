@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
-import '../../injuriesGroup.dart';
+import '../../Pages/Patologies/PatologiesGroup.dart';
 
 class SplashScreenWidget extends StatelessWidget {
   const SplashScreenWidget({super.key});
@@ -32,7 +32,7 @@ class SplashScreenWidget extends StatelessWidget {
             )
           ],
         ),
-        nextScreen: InjuriesGroup(),
+        nextScreen: PatologiesGroup(),
         splashTransition: SplashTransition.scaleTransition,
         animationDuration: const Duration(seconds: 1),
         backgroundColor: const Color(0xFF672855));

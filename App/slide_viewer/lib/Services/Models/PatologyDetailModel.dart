@@ -1,4 +1,4 @@
-class InjuryDetailModel {
+class PatologyDetailModel {
   final int id;
   final String label;
   final int parent;
@@ -11,7 +11,7 @@ class InjuryDetailModel {
   final List<String>? extraImages;
   final String url;
 
-  InjuryDetailModel(
+  PatologyDetailModel(
       {required this.id,
       required this.label,
       required this.parent,
@@ -24,8 +24,8 @@ class InjuryDetailModel {
       required this.extraImages,
       required this.url});
 
-  factory InjuryDetailModel.fromJson(Map<String, dynamic> json) {
-    return InjuryDetailModel(
+  factory PatologyDetailModel.fromJson(Map<String, dynamic> json) {
+    return PatologyDetailModel(
         id: json['id'],
         label: json['label'],
         parent: json['parent'],

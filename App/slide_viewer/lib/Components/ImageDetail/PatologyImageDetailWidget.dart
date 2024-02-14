@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'ImageDetailWidgetBase.dart';
+import '../../Pages/Others/WebSlideViewPage.dart';
 import '../../Services/InternetCheckerService.dart';
-import '../../Services/Models/InjuryDetailModel.dart';
-import '../../Style/CustomTextStyle.dart';
-import '../../WebSlideView.dart';
+import '../../Services/Models/PatologyDetailModel.dart';
+import '../../Styles/CustomTextStyle.dart';
 
-class InjuryImageDetailWidget extends ImageDetailWidgetBase {
-  final InjuryDetailModel injuryModel;
+class PatologyImageDetailWidget extends ImageDetailWidgetBase {
+  final PatologyDetailModel injuryModel;
 
-  const InjuryImageDetailWidget({
+  const PatologyImageDetailWidget({
     super.key,
     required this.injuryModel,
   });
@@ -63,7 +63,7 @@ class InjuryImageDetailWidget extends ImageDetailWidgetBase {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => WebSlideView(selectedUrl: url)));
+                builder: (context) => WebSlideViewPage(selectedUrl: url)));
       } else {
         var snackBar = SnackBar(
           content: Text(

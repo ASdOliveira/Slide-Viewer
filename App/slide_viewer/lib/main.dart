@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'Components/Utils/SplashScreenWidget.dart';
 import 'Services/CaseStudiesService.dart';
-import 'Services/InjuriesGroupService.dart';
-import 'Services/InjuryDetailService.dart';
+import 'Services/PatologiesGroupService.dart';
+import 'Services/PatologyDetailService.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await InjuriesGroupService().loadData();
-  await InjuryDetailService().loadData();
+  await PatologiesGroupService().loadData();
+  await PatologyDetailService().loadData();
   await CaseStudiesService().loadData();
 
   runApp(const MyApp());
