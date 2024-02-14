@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:slide_viewer/Components/H1TextWidget.dart';
 
-import 'Components/BodyTextWidget.dart';
-import 'Components/DrawerWidget.dart';
-import 'Components/H2TextWidget.dart';
-import 'Components/SearchWidget.dart';
+import 'Components/Text/BodyTextWidget.dart';
+import 'Components/Text/H1TextWidget.dart';
+import 'Components/Text/H2TextWidget.dart';
+import 'Components/Utils/DrawerWidget.dart';
+import 'Components/Utils/SearchWidget.dart';
 
 class AboutPage extends StatelessWidget {
   AboutPage({super.key});

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:slide_viewer/Components/DrawerWidget.dart';
-import 'Components/H1TextWidget.dart';
-import 'Components/H2TextWidget.dart';
-import 'Components/SearchWidget.dart';
+
 import 'InjuryDetail.dart';
+import 'Components/Text/H1TextWidget.dart';
+import 'Components/Text/H2TextWidget.dart';
+import 'Components/Utils/DrawerWidget.dart';
+import 'Components/Utils/SearchWidget.dart';
 import 'Services/InjuryDetailService.dart';
 import 'Services/Models/InjuryDetailModel.dart';
 import 'Style/CustomButtonStyle.dart';

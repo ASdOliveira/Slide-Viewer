@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import '../injuriesGroup.dart';
+
+import '../../injuriesGroup.dart';
 
 class SplashScreenWidget extends StatelessWidget {
   const SplashScreenWidget({super.key});

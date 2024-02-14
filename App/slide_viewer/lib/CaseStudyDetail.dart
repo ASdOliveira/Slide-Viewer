@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:slide_viewer/Services/CaseStudiesService.dart';
-import 'Components/CaseStudyImageDetailWidget.dart';
-import 'Components/DrawerWidget.dart';
-import 'Components/H1TextWidget.dart';
-import 'Components/InjuryDetailTextContainer.dart';
+
+import 'Components/ImageDetail/CaseStudyImageDetailWidget.dart';
+import 'Components/Text/DetailTextContainer.dart';
+import 'Components/Text/H1TextWidget.dart';
+import 'Components/Utils/DrawerWidget.dart';
+import 'Services/CaseStudiesService.dart';
 import 'Services/Models/CaseStudyModel.dart';
 
 class CaseStudyDetail extends StatefulWidget {
@@ -53,7 +54,7 @@ class CaseStudyDetailState extends State<CaseStudyDetail> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    InjuryDetailTextContainer(
+                    DetailTextContainer(
                         title: "Descrição", body: caseStudy.description),
                   ],
                 ),

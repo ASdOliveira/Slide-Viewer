@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Style/CustomTextStyle.dart';
+import '../../Style/CustomTextStyle.dart';
 
 class BodyTextWidget extends StatelessWidget {
   final String text;

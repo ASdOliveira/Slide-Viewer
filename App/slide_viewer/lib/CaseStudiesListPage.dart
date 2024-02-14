@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:slide_viewer/CaseStudyDetail.dart';
-import 'package:slide_viewer/Components/DrawerWidget.dart';
+
+import 'CaseStudyDetail.dart';
+import 'Components/Text/H1TextWidget.dart';
+import 'Components/Text/H2TextWidget.dart';
+import 'Components/Utils/DrawerWidget.dart';
 import 'Services/CaseStudiesService.dart';
-import 'Components/H1TextWidget.dart';
-import 'Components/H2TextWidget.dart';
 import 'Services/Models/CaseStudyModel.dart';
 import 'Style/CustomButtonStyle.dart';
 

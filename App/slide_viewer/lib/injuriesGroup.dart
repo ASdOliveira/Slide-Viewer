@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:slide_viewer/Components/DrawerWidget.dart';
 
-import 'package:slide_viewer/injuriesSubGroup.dart';
-import 'Components/H1TextWidget.dart';
-import 'Components/H2TextWidget.dart';
-import 'Components/SearchWidget.dart';
-import 'Style/CustomButtonStyle.dart';
+import 'injuriesSubGroup.dart';
+import 'Components/Text/H1TextWidget.dart';
+import 'Components/Text/H2TextWidget.dart';
+import 'Components/Utils/DrawerWidget.dart';
+import 'Components/Utils/SearchWidget.dart';
 import 'Services/InjuriesGroupService.dart';
 import 'Services/Models/InjuriesGroupModel.dart';
+import 'Style/CustomButtonStyle.dart';
 
 class InjuriesGroup extends StatefulWidget {
   const InjuriesGroup({super.key});

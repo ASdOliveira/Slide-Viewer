@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:slide_viewer/InjuryDetail.dart';
-import 'package:slide_viewer/Services/InjuryDetailService.dart';
-import 'package:slide_viewer/Services/Models/InjuryDetailModel.dart';
 
-import '../Style/CustomTextStyle.dart';
+import '../../InjuryDetail.dart';
+import '../../Services/InjuryDetailService.dart';
+import '../../Services/Models/InjuryDetailModel.dart';
+import '../../Style/CustomTextStyle.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({super.key});

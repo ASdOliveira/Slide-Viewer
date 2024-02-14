@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
+import 'Components/Utils/SplashScreenWidget.dart';
 import 'Services/CaseStudiesService.dart';
 import 'Services/InjuriesGroupService.dart';
 import 'Services/InjuryDetailService.dart';
-import 'Components/SplashScreenWidget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

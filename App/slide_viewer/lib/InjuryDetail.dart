@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:slide_viewer/Services/InjuryDetailService.dart';
-import 'package:slide_viewer/Services/Models/InjuryDetailModel.dart';
-import 'Components/DrawerWidget.dart';
-import 'Components/H1TextWidget.dart';
-import 'Components/InjuryDetailTextContainer.dart';
-import 'Components/InjuryImageDetailWidget.dart';
-import 'Components/SearchWidget.dart';
+
+import 'Components/ImageDetail/InjuryImageDetailWidget.dart';
+import 'Components/Text/H1TextWidget.dart';
+import 'Components/Text/DetailTextContainer.dart';
+import 'Components/Utils/DrawerWidget.dart';
+import 'Components/Utils/SearchWidget.dart';
+import 'Services/InjuryDetailService.dart';
+import 'Services/Models/InjuryDetailModel.dart';
 
 class InjuryDetail extends StatefulWidget {
   final int Id;
@@ -57,18 +58,18 @@ class InjuryDetailState extends State<InjuryDetail> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    InjuryDetailTextContainer(
+                    DetailTextContainer(
                         title: "Descrição", body: injuryModel.description),
-                    InjuryDetailTextContainer(
+                    DetailTextContainer(
                         title: "Características Clínicas",
                         body: injuryModel.clinicalCharacs),
-                    InjuryDetailTextContainer(
+                    DetailTextContainer(
                         title: "Características Radiográficas",
                         body: injuryModel.radiographicalCharacs),
-                    InjuryDetailTextContainer(
+                    DetailTextContainer(
                         title: "Características Histopatológicas",
                         body: injuryModel.histopathological),
-                    InjuryDetailTextContainer(
+                    DetailTextContainer(
                         title: "Tratamento", body: injuryModel.treatment),
                   ],
                 ),

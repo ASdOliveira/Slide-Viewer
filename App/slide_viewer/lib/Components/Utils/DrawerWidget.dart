@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:slide_viewer/AboutPage.dart';
-import 'package:slide_viewer/CaseStudiesListPage.dart';
-import 'package:slide_viewer/injuriesGroup.dart';
 
-import '../Style/CustomTextStyle.dart';
+import '../../AboutPage.dart';
+import '../../CaseStudiesListPage.dart';
+import '../../injuriesGroup.dart';
+import '../../Style/CustomTextStyle.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});

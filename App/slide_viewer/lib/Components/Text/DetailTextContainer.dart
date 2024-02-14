@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'BodyTextWidget.dart';
 import 'H2TextWidget.dart';
 
-class InjuryDetailTextContainer extends StatelessWidget {
+class DetailTextContainer extends StatelessWidget {
   final String title;
   final String body;
-  const InjuryDetailTextContainer(
+  const DetailTextContainer(
       {super.key, required this.title, required this.body});
 
   @override
