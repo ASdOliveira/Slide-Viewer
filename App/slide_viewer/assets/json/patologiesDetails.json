@@ -593,9 +593,9 @@
       "radiographicalCharacs": "Não possui achados radiográficos",
       "histopathological": "O epitélio pode exibir diferentes graus de displasia. Normalmente apresenta hiperqueratose e o epitélio pode ser atrófico ou acantótico. O tecido conjuntivo demonstra uma faixa acelular amorfa, basofílica, conhecida como elastose solar, uma alteração do colágeno e fibras elásticas induzida pela luz UV. Também é possível visualizar um infiltrado inflamatório crônico e vasos sanguíneos dilatados.",
       "treatment": "Muitas das alterações associadas a queilite actínica são irreversíveis. Porém os pacientes devem ser orientados a reduzir as exposições solares, usar chapéu e protetor solar para evitar mais danos. Deve ser realizada a biópsia para descartar a possibilidade de um carcinoma. A vermelhectomia pode ser realizada em casos mais graves, mas que não haja transformações malignas.\nO acompanhamento a longo prazo deve ser realizado.",
-      "imageName": "",
+      "imageName": "Queilite_actinica.jpg",
       "extraImages":[],
-      "url": ""  
+      "url": "https://slideviewer.com.br/Queilite_actinica.mrxs"  
     },
     {
       "id": 49,
@@ -634,6 +634,58 @@
       "treatment": "Curetagem e enucleação",
       "imageName": "",
       "extraImages":[],
+      "url": ""  
+    },
+    {
+      "id": 52,
+      "label": "Cisto Nasolabial",
+      "parent": 11,
+      "description": "É um cisto raro, que se desenvolve no lábio superior, lateralmente a linha média. Sua patogênese é desconhecida. Acomete com mais frequência adulto entre a 4ª e 5ª década de vida. Existe uma predileção pelo gênero feminino.",
+      "clinicalCharacs": "Se apresenta como um aumento de volume do lábio superior, resultando na elevação da asa do nariz. Em alguns casos, essa expansão pode causar obstrução nasal ou interferir na utilização de uma prótese.",
+      "radiographicalCharacs": "Na maioria dos casos não há alterações radiográficas. Em alguns casos, pode ocorrer reabsorção do osso subjacente pela pressão exercida pelo cisto.",
+      "histopathological": "É revestido por epitélio colunar pseudoestratificado, exibindo células caliciformes e ciliadas. A parede do cisto é composta de tecido conjuntivo fibroso com tecido muscular esquelético adjacente. Inflamação pode ser observada quando a lesão está secundariamente infectada.",
+      "treatment": "Remoção cirúrgica total. A recidiva é rara.",
+      "imageName": "",
+      "extraImages":["cisto_nasolabial_1.jpg", "cisto_nasolabial_2.jpg","cisto_nasolabial_oclusal.jpg"],
+      "url": ""  
+    },
+    {
+      "id": 53,
+      "label": "Cisto do Ducto Nasopalatino",
+      "parent": 11,
+      "description": "É o cisto não odontogênico mais comum da cavidade oral. Acredita-se que se origine do remanescente do ducto nasopalatino. Pode acometer qualquer idade, sendo mais comum na 4ª e a 6ª década de vida.",
+      "clinicalCharacs": "Os sintomas mais comuns incluem tumefação da região anterior do palato, drenagem e dor. Muitas dessas lesões são assintomáticas e são identificas em radiografia de rotina.",
+      "radiographicalCharacs": "Apresenta-se como uma lesão radiolúcidas bem circunscrita próxima ou na linha média da região anterior de maxila, entre os ápices dos incisivos centrais. Pode ter um formato de coração ou também de pêra invertida.",
+      "histopathological": "O epitélio de revestimento é bastante variável, podendo ser constituído de epitélio: - pavimentoso estratificado, colunar pseudoestratificado, colunar simples ou cúbico simples. Pode ser encontrado mais de um tipo de epitélio no mesmo cisto, sendo o epitélio pavimentoso estratificado o mais comum. Cistos que se desenvolvem mais superiormente no canal, próximos à cavidade nasal, tendem a apresentar epitélio respiratório; enquanto aqueles localizados próximos à cavidade oral, em geral exibem epitélio pavimentoso. Pequenas glândulas mucosas podem ser observadas, como também pequenas ilhas de cartilagem hialina. Nervos, arteríolas e veias frequentemente são encontrados na parede do cisto. Uma resposta inflamatória é notada com frequência na parede cística, bem como células inflamatórias agudas podem ser observadas.",
+      "treatment": "Enucleação cirúrgica. A recidiva é rara.",
+      "imageName": "",
+      "extraImages":["Cisto_do_ducto_naso_palatino.jpg","Cisto_do_ducto_naso_palatino_oclusal.jpg","Cisto_do_ducto_naso_palatino_peripaical.jpg","Cisto_do_ducto_naso_palatino_tomo_axial.jpg","Cisto_do_ducto_naso_palatino_tomo_coronal.jpg"],
+      "url": ""  
+    },
+    {
+      "id": 54,
+      "label": "Cisto da Papila Incisiva",
+      "parent": 11,
+      "description": "Nas raras ocasiões, quando um cisto do ducto nasopalatino se desenvolve nos tecidos moles da papila incisiva, sem qualquer envolvimento ósseo. Essa lesão é denominada de Cisto da papila incisiva.",
+      "clinicalCharacs": "Exibem coloração azulada devido ao conteúdo líquido na luz do cisto.",
+      "radiographicalCharacs": "Não apresenta achados radiográficos",
+      "histopathological": "",
+      "treatment": "Excisão cirúrgica.",
+      "imageName": "",
+      "extraImages":["Cisto_da_papila_incisiva.jpg"],
+      "url": ""  
+    },
+    {
+      "id": 55,
+      "label": "Cisto Dermoide",
+      "parent": 11,
+      "description": "É uma malformação cística incomum. Mais frequente em crianças e adultos jovens. Geralmente cresce aos poucos sem provocar dor.",
+      "clinicalCharacs": "Ocorrem com mais frequência na linha média do assoalho da boca, podendo estar deslocados lateralmente no assoalho bucal ou em outras localizações. Quando o cisto se desenvolve abaixo do músculo gênio-hióideo, uma tumefação sublingual pode deslocar a língua superiormente e causar dificuldades na deglutição, na fonação ou até na respiração. Os cistos que surgem acima do músculo gênio-hioideo produzem, muitas vezes, uma tumefação submentoniana, com aparência de \"queixo duplo\".",
+      "radiographicalCharacs": "A fim de delinear a extensão da lesão, Imagem de Ressonância Magnética, Tomografia Computadorizada ou radiografias com utilização de contraste podem ser úteis.",
+      "histopathological": "São revestidos por epitélio pavimentoso estratificado ortoqueratinizado, com uma camada granulosa. É comum encontrar queratina no interior da luz do cisto. A parede cística é composta por tecido conjuntivo fibroso que contém anexos cutâneos, tais como glândulas sebáceas, folículos pilosos ou glândulas sudoríparas.",
+      "treatment": "Remoção cirúrgica. A recidiva é incomum.",
+      "imageName": "",
+      "extraImages":["Cisto_dermoide_1.jpg","Cisto_dermoide_2.jpg"],
       "url": ""  
     }
   ]
