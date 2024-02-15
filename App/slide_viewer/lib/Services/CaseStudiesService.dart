@@ -15,7 +15,8 @@ class CaseStudiesService {
   }
 
   Future<List<CaseStudyModel>> loadData() async {
-    String jsonContent = await rootBundle.loadString('assets/caseStudies.json');
+    String jsonContent =
+        await rootBundle.loadString('assets/json/caseStudies.json');
 
     List<dynamic> jsonData = json.decode(jsonContent);
 

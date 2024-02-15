@@ -16,7 +16,8 @@ class PatologiesGroupService {
   }
 
   Future<List<PatologiesGroupModel>> loadData() async {
-    String jsonContent = await rootBundle.loadString('assets/patologies.json');
+    String jsonContent =
+        await rootBundle.loadString('assets/json/patologies.json');
 
     List<dynamic> jsonData = json.decode(jsonContent);
 

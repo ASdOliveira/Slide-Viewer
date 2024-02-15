@@ -112,9 +112,7 @@ flutter:
       fonts:
         - asset: assets/fonts/OpenSans-Regular.ttf
   assets:
-    - assets/patologies.json
-    - assets/patologiesDetails.json
-    - assets/caseStudies.json
+    - assets/json/
     - assets/caseStudies/
     - assets/images/
     - assets/laminas/
