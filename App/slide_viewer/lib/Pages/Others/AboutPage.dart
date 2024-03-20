@@ -50,7 +50,7 @@ class AboutPage extends StatelessWidget {
                 const SizedBox(height: 18),
                 BodyTextWidget(
                     text:
-                        "NEVILLE, Brad. Patologia oral e maxilofacial. 4 ed. Rio de Janeiro: Elsevier, 2016, 912 ISBN: 978-85-352-6564-4."),
+                        "Editorial Board of the WHO Classification of Tumors. Head and neck tumors [Internet; beta version ahead of print]. Lyon (France): International Agency for Cancer Research;2022 [cited 2024]. (WHO tumor classification series, 5thed.; vol.9). Available at: http://tumorclassification.iarc.who.int.chapters/52.\n\nNEVILLE, Brad. Patologia oral e maxilofacial. 4 ed. Rio de Janeiro: Elsevier, 2016, 912 ISBN: 978-85-352-6564-4."),
                 const SizedBox(height: 18),
                 H2TextWidget(
                   text: "Contato",
