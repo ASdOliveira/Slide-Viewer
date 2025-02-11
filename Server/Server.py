@@ -41,7 +41,7 @@ SRGB_PROFILE_BYTES = zlib.decompress(
 )
 SRGB_PROFILE = ImageCms.getOpenProfile(BytesIO(SRGB_PROFILE_BYTES))
 
-access_count = {"total": 0}
+access_count = {}
 counter_lock = Lock()
 
 CODE = "q7sxE*y3-eAJ!sw!vR#^"
@@ -194,17 +194,22 @@ def get_slide(path):
 @app.route('/count', methods=['POST'])
 def increment_access():
     data = request.get_json()
-    if not data or data.get("code") != CODE:
-        return jsonify({"error": "Invalid or absent code"}), 403
+    if not data or data.get("code") != CODE or "page" not in data:
+        return jsonify({"error": "Invalid or absent code or page name"}), 403
+    
+    page = data["page"]
     
     with counter_lock:
-        access_count["total"] += 1
-    return jsonify({"Status": "count incremented", "access number": access_count["total"]})
+        if page in access_count:
+            access_count[page] += 1
+        else:
+            access_count[page] = 1
+    return jsonify({"Status": f"count incremented for {page}", "access number": access_count[page]})
 
 @app.route('/count_status')
 def status():
     with counter_lock:
-        access = access_count["total"]
+        access = dict(access_count)
     return jsonify({"access": access})
 
 @app.route('/')
