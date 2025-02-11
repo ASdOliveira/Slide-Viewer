@@ -9,7 +9,7 @@ from threading import Lock
 import zlib
 
 from PIL import ImageCms
-from flask import Flask, abort, make_response, render_template, url_for
+from flask import Flask, abort, make_response, render_template, url_for, jsonify, request
 
 if os.name == 'nt':
     _dll_path = os.getenv('OPENSLIDE_PATH')
@@ -40,6 +40,11 @@ SRGB_PROFILE_BYTES = zlib.decompress(
     )
 )
 SRGB_PROFILE = ImageCms.getOpenProfile(BytesIO(SRGB_PROFILE_BYTES))
+
+access_count = {"total": 0}
+counter_lock = Lock()
+
+CODE = "q7sxE*y3-eAJ!sw!vR#^"
 
 class _SlideCache:
     def __init__(self, cache_size, tile_cache_mb, dz_opts, color_mode):
@@ -186,6 +191,22 @@ def get_slide(path):
         abort(404)
 
 # Set up routes
+@app.route('/count', methods=['POST'])
+def increment_access():
+    data = request.get_json()
+    if not data or data.get("code") != CODE:
+        return jsonify({"error": "Invalid or absent code"}), 403
+    
+    with counter_lock:
+        access_count["total"] += 1
+    return jsonify({"Status": "count incremented", "access number": access_count["total"]})
+
+@app.route('/count_status')
+def status():
+    with counter_lock:
+        access = access_count["total"]
+    return jsonify({"access": access})
+
 @app.route('/')
 def index():
     return render_template('files.html', root_dir=_Directory(app.basedir))
