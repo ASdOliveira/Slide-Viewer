@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ slide_name }}</title>
+    <script src="{{ url_for('static', filename='openseadragon.js') }}"></script>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100hv;
+            width: 100vw;
+            overflow: hidden;
+            background-color: #000;
+        }
+        #openseadragon {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="openseadragon"></div>
+    <script type="text/javascript">
+        OpenSeadragon({
+            id:"openseadragon",
+            prefixUrl: "{{ url_for('static', filename='images/') }}",
+            tileSources: "{{ dzi_path }}",
+            showNavigator: false,
+            showRotationControl: false,
+            minPixelRatio: 2,
+            animationTime: 0.5,
+            blendTime: 0.1,
+            constrainDuringPan: true,
+            maxZoomPixelRatio: 2,
+            minZoomImageRatio: 1,
+            visibilityRatio: 1,
+            zoomPerScroll: 2,
+            timeout: 120000,
+        })
+    </script>
+</body>
+</html>
