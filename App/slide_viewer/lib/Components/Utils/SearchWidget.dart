@@ -6,8 +6,26 @@ import '../../Services/PatologyDetailService.dart';
 import '../../Services/Models/PatologyDetailModel.dart';
 import '../../Styles/CustomTextStyle.dart';
 
-class SearchWidget extends StatelessWidget {
+class SearchWidget extends StatefulWidget {
   const SearchWidget({super.key});
+
+  @override
+  State<SearchWidget> createState() => _SearchWidgetState();
+}
+
+class _SearchWidgetState extends State<SearchWidget> {
+  final TextEditingController _controller = TextEditingController();
+
+  void _clearField() {
+    _controller.clear();
+    FocusScope.of(context).unfocus(); // fecha teclado
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,21 +35,24 @@ class SearchWidget extends StatelessWidget {
       child: TypeAheadField<PatologyDetailModel>(
         minCharsForSuggestions: 1,
         textFieldConfiguration: TextFieldConfiguration(
+          controller: _controller, 
           textAlignVertical: TextAlignVertical.bottom,
           style: searchButtonTextStyle(),
+          onSubmitted: (value) {
+            _clearField(); 
+          },
           decoration: InputDecoration(
             filled: true,
             fillColor: const Color(0xFF9C3C81),
-            focusColor: const Color(0xFFFFFFFF),
             prefixIcon: const Icon(Icons.search),
             prefixIconColor: Colors.white,
             focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white)),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+              borderSide: BorderSide(color: Colors.white),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+            ),
             hintText: 'Pesquisar',
-            hintMaxLines: 1,
-            hoverColor: const Color(0xFF9C3C81),
             hintStyle: searchButtonTextStyle(),
           ),
         ),
@@ -43,7 +64,7 @@ class SearchWidget extends StatelessWidget {
               .take(6)
               .toList();
         },
-        itemBuilder: (context, PatologyDetailModel suggestion) {
+        itemBuilder: (context, suggestion) {
           return ListTile(
             title: Text(
               suggestion.label,
@@ -51,13 +72,18 @@ class SearchWidget extends StatelessWidget {
             ),
           );
         },
-        onSuggestionSelected: (PatologyDetailModel suggestion) {
+        onSuggestionSelected: (suggestion) {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PatologyDetail(Id: suggestion.id),
+              builder: (context) =>
+                  PatologyDetail(Id: suggestion.id),
             ),
-          );
+          ).then((_) {
+            _clearField(); 
+          });
+
+          _clearField();
         },
         noItemsFoundBuilder: (context) {
           return const SizedBox.shrink();

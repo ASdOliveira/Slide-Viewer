@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
 
 import '../../Components/Text/H1TextWidget.dart';
 import '../../Components/Text/H2TextWidget.dart';
@@ -26,8 +27,15 @@ abstract class ButtonListBase extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: const Color(0xFF672855),
-          title: showSearchWidget ? SearchWidget() : SizedBox.shrink()),
+          title: showSearchWidget ? SearchWidget() : SizedBox.shrink(),
+          leading: Platform.isIOS && Navigator.canPop(context)
+              ? IconButton( icon: const Icon(Icons.arrow_back),
+                            onPressed: () { Navigator.of(context).pop();},
+                          )
+               : null,
+          ),
       backgroundColor: const Color(0xFFEAEFF3),
+      drawerEdgeDragWidth: Platform.isIOS ? 0 : null,
       drawer: DrawerWidget(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
