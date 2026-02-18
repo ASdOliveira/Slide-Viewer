@@ -21,8 +21,8 @@ class DrawerWidget extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/images/logo.png',
-                  height: 70,
-                  width: 75,
+                  height: 55,
+                  width: 60,
                 ),
                 const SizedBox(width: 15),
                 Text(

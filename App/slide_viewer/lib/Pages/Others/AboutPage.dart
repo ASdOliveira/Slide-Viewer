@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
 
 import '../../Components/Text/BodyTextWidget.dart';
 import '../../Components/Text/H1TextWidget.dart';
@@ -14,8 +15,15 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             backgroundColor: const Color(0xFF672855),
-            title: const SearchWidget()),
+            title: const SearchWidget(),
+            leading: Platform.isIOS && Navigator.canPop(context)
+              ? IconButton( icon: const Icon(Icons.arrow_back),
+                            onPressed: () { Navigator.of(context).pop();},
+                          )
+              : null,
+          ),
         backgroundColor: const Color(0xFFFFFFFF),
+        drawerEdgeDragWidth: Platform.isIOS ? 0 : null,
         drawer: DrawerWidget(),
         body: SingleChildScrollView(
           child: Container(

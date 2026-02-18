@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
 
 import '../../Components/ImageDetail/CaseStudyImageDetailWidget.dart';
 import '../../Components/ImageDetail/PatologyImageDetailWidget.dart';
@@ -35,7 +36,13 @@ abstract class DetailBase extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF672855),
         title: showSearchWidget ? SearchWidget() : null,
+                  leading: Platform.isIOS && Navigator.canPop(context)
+              ? IconButton( icon: const Icon(Icons.arrow_back),
+                            onPressed: () { Navigator.of(context).pop();},
+                          )
+               : null,
       ),
+      drawerEdgeDragWidth: Platform.isIOS ? 0 : null,
       drawer: DrawerWidget(),
       backgroundColor: const Color(0xFFEAEFF3),
       body: Column(
